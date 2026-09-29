@@ -7,12 +7,15 @@ Quarters already in bronze are skipped (idempotent), unless --force is used.
 
 Run one quarter (measure volumes):  python -m ingestion.batch.faers --start 2026Q2 --end 2026Q2
 Run a range:                        python -m ingestion.batch.faers --start 2020Q1 --end 2026Q2
+Scheduled (last 2 quarters):        python -m ingestion.batch.faers --recent 2
+   quarters not yet published by the FDA are skipped with a warning (the FDA publishes ~1 month after quarter end)
 """
 import argparse
 import csv
 import re
 import tempfile
 import zipfile
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -61,6 +64,17 @@ def quarter_range(start: str, end: str) -> list[str]:
         quarters.append(f"{year}Q{q}")
         year, q = (year + 1, 1) if q == 4 else (year, q + 1)
     return quarters
+
+
+def recent_quarters(n: int, today: date | None = None) -> list[str]:
+    """The n most recent COMPLETED quarters, oldest first. recent_quarters(2, date(2026, 9, 29)) -> ['2026Q1', '2026Q2']"""
+    today = today or date.today()
+    year, q = today.year, (today.month - 1) // 3 + 1
+    quarters = []
+    for _ in range(n):
+        year, q = (year - 1, 4) if q == 1 else (year, q - 1)
+        quarters.append(f"{year}Q{q}")
+    return quarters[::-1]
 
 
 def standardise_columns(df: pd.DataFrame, table: str, unexpected: set) -> pd.DataFrame:
@@ -140,16 +154,29 @@ def process_quarter(quarter: str, force: bool, report: list, run: dict) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Ingest FAERS quarterly files into the data lake")
-    parser.add_argument("--start", required=True, help="First quarter, e.g. 2020Q1")
-    parser.add_argument("--end", required=True, help="Last quarter, e.g. 2026Q2")
+    parser.add_argument("--start", help="First quarter, e.g. 2020Q1")
+    parser.add_argument("--end", help="Last quarter, e.g. 2026Q2")
+    parser.add_argument("--recent", type=int, help="Process the N most recent completed quarters")
     parser.add_argument("--force", action="store_true", help="Reload quarters already in bronze")
     args = parser.parse_args()
 
+    if args.recent:
+        quarters = recent_quarters(args.recent)
+    elif args.start and args.end:
+        quarters = quarter_range(args.start.upper(), args.end.upper())
+    else:
+        parser.error("use --recent N or --start and --end")
+
     report = []
     with track_run(SOURCE) as run:
-        for quarter in quarter_range(args.start.upper(), args.end.upper()):
-            process_quarter(quarter, args.force, report, run)
-        run["target"] = f"gs://.../bronze/faers ({args.start}-{args.end})"
+        for quarter in quarters:
+            try:
+                process_quarter(quarter, args.force, report, run)
+            except FileNotFoundError:
+                if not args.recent:
+                    raise
+                logger.warning("%s not published by the FDA yet, skipping", quarter)
+        run["target"] = f"bronze/faers ({quarters[0]}-{quarters[-1]})"
 
     if report:
         summary = pd.DataFrame(report).groupby("table")[["rows", "txt_mb", "parquet_mb"]].sum()

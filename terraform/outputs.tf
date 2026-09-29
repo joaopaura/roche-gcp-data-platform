@@ -13,3 +13,8 @@ output "service_accounts" {
     powerbi   = google_service_account.powerbi.email
   }
 }
+
+output "github_wif_provider" {
+  description = "Value for the GitHub repository variable GCP_WIF_PROVIDER"
+  value       = google_iam_workload_identity_pool_provider.github.name
+}

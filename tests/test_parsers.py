@@ -3,7 +3,7 @@ import pandas as pd
 
 from ingestion.batch.clinical_trials import flatten_study
 from ingestion.batch.ecb_fx import parse_ecb_csv
-from ingestion.batch.faers import quarter_range, standardise_columns
+from ingestion.batch.faers import quarter_range, recent_quarters, standardise_columns
 from ingestion.batch.openfda_enforcement import flatten_recall
 
 
@@ -85,3 +85,13 @@ def test_convert_table_from_zip(tmp_path):
     assert list(table.columns) == ["primaryid", "caseid", "pt", "drug_rec_act"]
     assert table.loc[0, "pt"] == "Náusea"
     assert table.loc[1, "drug_rec_act"] == "Yes"
+
+
+def test_recent_quarters_mid_year():
+    from datetime import date
+    assert recent_quarters(2, date(2026, 9, 29)) == ["2026Q1", "2026Q2"]
+
+
+def test_recent_quarters_crosses_year():
+    from datetime import date
+    assert recent_quarters(3, date(2026, 2, 10)) == ["2025Q2", "2025Q3", "2025Q4"]

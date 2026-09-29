@@ -19,3 +19,9 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "github_repository" {
+  description = "GitHub repository (owner/name) allowed to authenticate through Workload Identity Federation"
+  type        = string
+  default     = "joaopaura/roche-gcp-data-platform"
+}
