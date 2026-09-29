@@ -7,6 +7,7 @@
 
   PRR = [a / (a + b)] / [c / (c + d)]   | signal when a >= 3, PRR >= 2 and chi-square (Yates) >= 4
   A statistical signal is a hypothesis for medical review, not proof of causality.
+  is_indication_related flags confounding by indication (the treated disease reported as a reaction).
 #}
 with product_reaction as (
     select * from {{ ref('int_faers__product_reaction_counts') }}
@@ -20,6 +21,11 @@ product_totals as (
 
 background as (
     select * from {{ ref('int_faers__event_background') }}
+),
+
+indication_terms as (
+    select product_id, lower(indication_pt) as indication_lower
+    from {{ ref('int_faers__product_indications') }}
 ),
 
 database_total as (
@@ -68,6 +74,11 @@ select
     chi_square,
     a >= {{ var('prr_min_cases') }} and prr >= {{ var('prr_threshold') }} and chi_square >= {{ var('chi_square_threshold') }}
         as is_signal,
+    exists (
+        select 1 from indication_terms as it
+        where it.product_id = stats.product_id
+          and strpos(lower(stats.reaction_pt), it.indication_lower) > 0
+    ) as is_indication_related,
     rank() over (partition by product_id order by a desc) as rank_by_cases
 from stats
 where c > 0

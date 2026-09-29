@@ -24,6 +24,8 @@ sources:
         description: FAERS reactions, MedDRA preferred terms (external table).
       - name: faers_outc
         description: FAERS patient outcomes (external table).
+      - name: faers_indi
+        description: FAERS indications, why each drug was used (external table).
       - name: faers_stream_events
         description: Adverse event intake stream loaded by the Kafka consumer (at-least-once, may contain duplicates).
         config:

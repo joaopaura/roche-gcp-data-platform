@@ -44,3 +44,10 @@ models:
 
   - name: int_ct__study_products
     description: Bridge between clinical trials and the Roche products named in their interventions.
+
+  - name: int_faers__product_indications
+    description: Main indications per Roche product (>= 1% of cases), used to flag confounding by indication.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [product_id, indication_pt]
