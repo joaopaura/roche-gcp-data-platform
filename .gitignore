@@ -216,3 +216,24 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---- Terraform ----
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+crash.log
+terraform.tfvars
+!terraform.tfvars.example
+
+# ---- Project ----
+data/raw/
+data/bronze/
+data/tmp/
+*.parquet
+dbt/**/target/
+dbt/**/dbt_packages/
+dbt/**/logs/
+.env
+*-key.json

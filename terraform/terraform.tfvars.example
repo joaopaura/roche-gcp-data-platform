@@ -1,0 +1,4 @@
+project_id      = "roche-data-platform"
+region          = "us-central1"
+developer_email = "you@example.com"
+environment     = "dev"
