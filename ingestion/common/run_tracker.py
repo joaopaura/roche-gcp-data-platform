@@ -34,6 +34,10 @@ def track_run(source: str):
     try:
         yield run
         run["status"] = "success"
+    except KeyboardInterrupt:
+        run["status"] = "cancelled"
+        run["error_message"] = "Interrupted by user (Ctrl+C)"
+        raise
     except Exception as exc:
         run["status"] = "failed"
         run["error_message"] = str(exc)[:1000]
