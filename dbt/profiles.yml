@@ -1,0 +1,26 @@
+# No secrets here: auth = your gcloud login (ADC), impersonating the dbt service account.
+# In GitHub Actions the same profile works with Workload Identity (IMPERSONATE_SA left empty).
+roche:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: roche-data-platform
+      dataset: staging            # default; each layer overrides it with +schema
+      location: us-central1
+      threads: 4
+      priority: interactive
+      job_execution_timeout_seconds: 900
+      job_retries: 1
+      impersonate_service_account: "{{ env_var('DBT_IMPERSONATE_SA', 'sa-dbt@roche-data-platform.iam.gserviceaccount.com') }}"
+      maximum_bytes_billed: 50000000000   # 50 GB safety cap per query
+    ci:
+      type: bigquery
+      method: oauth
+      project: roche-data-platform
+      dataset: dbt_ci             # every layer goes to dbt_ci (tables expire after 1 day)
+      location: us-central1
+      threads: 4
+      job_execution_timeout_seconds: 900
+      maximum_bytes_billed: 50000000000

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: ops_ingestion_runs
+    description: Python ingestion runs with overlap detection (concurrent runs of the same source).
+    columns:
+      - name: run_id
+        data_tests: [unique, not_null]
+  - name: ops_kafka_batches
+    description: Kafka consumer micro-batches (volume, invalid rate, lag, throughput).
+  - name: ops_layer_volumes
+    description: Rows and storage per table and layer, measured at each dbt run.
+  - name: ops_dbt_run_results
+    description: dbt model and test results with bytes billed and estimated cost.

@@ -1,0 +1,7 @@
+occp_cod,reporter_type,is_health_professional
+MD,Physician,true
+PH,Pharmacist,true
+OT,Other health professional,true
+HP,Health professional,true
+LW,Lawyer,false
+CN,Consumer,false

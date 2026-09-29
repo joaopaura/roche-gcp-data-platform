@@ -1,0 +1,38 @@
+version: 2
+
+seeds:
+  - name: roche_products
+    description: Curated list of Roche / Genentech marketed products (US), with therapeutic area and loss-of-exclusivity year.
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+      - name: brand_name
+        data_tests: [unique, not_null]
+      - name: therapeutic_area
+        data_tests: [not_null]
+
+  - name: roche_product_aliases
+    description: >
+      Names used to recognise Roche products in FAERS (drug name / active ingredient) and CMS (brand).
+      Built from the real values profiled in the raw layer. requires_roche_sender = true for generic names
+      shared with biosimilars, generics or partners.
+    columns:
+      - name: alias
+        data_tests: [unique, not_null]
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('roche_products')
+                field: product_id
+      - name: alias_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['brand', 'molecule']
+
+  - name: faers_outcome_codes
+    description: FAERS outcome codes (any outcome = serious case).
+  - name: faers_occupation_codes
+    description: FAERS reporter occupation codes.

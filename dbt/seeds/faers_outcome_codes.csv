@@ -1,0 +1,8 @@
+outc_cod,outcome,severity_rank
+DE,Death,1
+LT,Life-threatening,2
+HO,Hospitalisation,3
+DS,Disability,4
+CA,Congenital anomaly,5
+RI,Required intervention,6
+OT,Other serious event,7

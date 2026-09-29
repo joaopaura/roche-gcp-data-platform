@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: int_faers__latest_cases
+    description: Latest version of every FAERS case (FDA deduplication rule). Denominator for PRR.
+    columns:
+      - name: caseid
+        data_tests: [unique, not_null]
+      - name: primaryid
+        data_tests: [unique, not_null]
+
+  - name: int_faers__roche_ps_drugs
+    description: Latest cases whose primary suspect drug is a Roche product (one row per case and product).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [primaryid, product_id]
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('roche_products')
+                field: product_id
+
+  - name: int_faers__event_background
+    description: Cases per MedDRA reaction across all drugs (PRR comparator).
+    columns:
+      - name: reaction_pt
+        data_tests: [unique, not_null]
+
+  - name: int_faers__product_reaction_counts
+    description: Cases per Roche product and reaction.
+
+  - name: int_fx__chf_per_usd
+    description: Daily CHF per USD cross rate derived from ECB EUR rates.
+    columns:
+      - name: rate_date
+        data_tests: [unique, not_null]
+
+  - name: int_cms__roche_spending
+    description: Medicare Part B + Part D rows attributed to Roche products.
+
+  - name: int_ct__study_products
+    description: Bridge between clinical trials and the Roche products named in their interventions.

@@ -1,0 +1,110 @@
+alias,product_id,alias_type,requires_roche_sender
+OCREVUS,P01,brand,false
+OCRELIZUMAB,P01,molecule,false
+OCREVUS ZUNOVO,P02,brand,false
+HYALURONIDASE-OCSQ\OCRELIZUMAB,P02,molecule,false
+XOLAIR,P03,brand,false
+XOLAIR PFS,P03,brand,false
+OMALIZUMAB,P03,molecule,true
+ACTEMRA,P04,brand,false
+ACTEMRA ACTPEN,P04,brand,false
+ROACTEMRA,P04,brand,false
+TOCILIZUMAB,P04,molecule,true
+RITUXAN,P05,brand,false
+MABTHERA,P05,brand,false
+RITUXIMAB,P05,molecule,true
+RITUXAN HYCELA,P06,brand,false
+HYALURONIDASE (HUMAN RECOMBINANT)\RITUXIMAB,P06,molecule,false
+TECENTRIQ,P07,brand,false
+ATEZOLIZUMAB,P07,molecule,false
+TECENTRIQ HYBREZA,P08,brand,false
+ATEZOLIZUMAB\HYALURONIDASE-TQJS,P08,molecule,false
+AVASTIN,P09,brand,false
+BEVACIZUMAB,P09,molecule,true
+HERCEPTIN,P10,brand,false
+TRASTUZUMAB,P10,molecule,true
+HERCEPTIN HYLECTA,P11,brand,false
+HYALURONIDASE-OYSK\TRASTUZUMAB,P11,molecule,false
+PERJETA,P12,brand,false
+PERTUZUMAB,P12,molecule,false
+PHESGO,P13,brand,false
+HYALURONIDASE-ZZXF\PERTUZUMAB\TRASTUZUMAB,P13,molecule,false
+PERTUZUMAB\TRASTUZUMAB,P13,molecule,true
+KADCYLA,P14,brand,false
+ADO-TRASTUZUMAB EMTANSINE,P14,molecule,false
+TRASTUZUMAB EMTANSINE,P14,molecule,false
+HEMLIBRA,P15,brand,false
+EMICIZUMAB,P15,molecule,false
+EMICIZUMAB-KXWH,P15,molecule,false
+VABYSMO,P16,brand,false
+FARICIMAB,P16,molecule,false
+FARICIMAB-SVOA,P16,molecule,false
+FARICIMAB\FARICIMAB-SVOA,P16,molecule,false
+LUCENTIS,P17,brand,false
+RANIBIZUMAB,P17,molecule,true
+ESBRIET,P18,brand,false
+PIRFENIDONE,P18,molecule,true
+EVRYSDI,P19,brand,false
+RISDIPLAM,P19,molecule,false
+ENSPRYNG,P20,brand,false
+SATRALIZUMAB,P20,molecule,false
+SATRALIZUMAB-MWGE,P20,molecule,false
+ALECENSA,P21,brand,false
+ALECTINIB,P21,molecule,false
+ALECTINIB HYDROCHLORIDE,P21,molecule,false
+GAZYVA,P22,brand,false
+GAZYVARO,P22,brand,false
+OBINUTUZUMAB,P22,molecule,false
+POLIVY,P23,brand,false
+POLATUZUMAB VEDOTIN,P23,molecule,false
+POLATUZUMAB VEDOTIN-PIIQ,P23,molecule,false
+COLUMVI,P24,brand,false
+GLOFITAMAB,P24,molecule,false
+GLOFITAMAB-GXBM,P24,molecule,false
+LUNSUMIO,P25,brand,false
+MOSUNETUZUMAB,P25,molecule,false
+MOSUNETUZUMAB-AXGB,P25,molecule,false
+ITOVEBI,P26,brand,false
+INAVOLISIB,P26,molecule,false
+PIASKY,P27,brand,false
+CROVALIMAB,P27,molecule,false
+CROVALIMAB-AKKZ,P27,molecule,false
+ERIVEDGE,P28,brand,false
+VISMODEGIB,P28,molecule,false
+ZELBORAF,P29,brand,false
+VEMURAFENIB,P29,molecule,false
+COTELLIC,P30,brand,false
+COBIMETINIB,P30,molecule,false
+COBIMETINIB FUMARATE,P30,molecule,false
+ROZLYTREK,P31,brand,false
+ENTRECTINIB,P31,molecule,false
+GAVRETO,P32,brand,false
+PRALSETINIB,P32,molecule,true
+XOFLUZA,P33,brand,false
+BALOXAVIR MARBOXIL,P33,molecule,false
+TAMIFLU,P34,brand,false
+OSELTAMIVIR,P34,molecule,true
+OSELTAMIVIR PHOSPHATE,P34,molecule,true
+PULMOZYME,P35,brand,false
+DORNASE ALFA,P35,molecule,false
+ACTIVASE,P36,brand,false
+CATHFLO ACTIVASE,P36,brand,false
+ALTEPLASE,P36,molecule,true
+TNKASE,P37,brand,false
+TENECTEPLASE,P37,molecule,true
+CELLCEPT,P38,brand,false
+MYCOPHENOLATE MOFETIL,P38,molecule,true
+MYCOPHENOLATE MOFETIL\MYCOPHENOLATE MOFETIL HYDROCHLORIDE,P38,molecule,true
+XELODA,P39,brand,false
+CAPECITABINE,P39,molecule,true
+NUTROPIN AQ,P40,brand,false
+NUTROPIN,P40,brand,false
+NUTROPIN AQ NUSPIN,P40,brand,false
+SOMATROPIN,P40,molecule,true
+VALCYTE,P41,brand,false
+VALGANCICLOVIR,P41,molecule,true
+VALGANCICLOVIR HYDROCHLORIDE,P41,molecule,true
+VENCLEXTA,P42,brand,false
+VENCLYXTO,P42,brand,false
+VENETOCLAX,P42,molecule,true
+SUSVIMO,P43,brand,false

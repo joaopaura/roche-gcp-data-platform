@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_ct__studies
+    description: Clinical trials, typed dates, phase and status groups.
+    columns:
+      - name: nct_id
+        data_tests: [unique, not_null]
+      - name: status_group
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Active', 'Completed', 'Stopped', 'Other']
+
+  - name: stg_cms__part_d_spending
+    description: Medicare Part D spend unpivoted to one row per drug, manufacturer and year.
+    columns:
+      - name: total_spending_usd
+        data_tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: ">= 0"
+
+  - name: stg_cms__part_b_spending
+    description: Medicare Part B spend unpivoted to one row per HCPCS code and year.
+
+  - name: stg_fda__recalls
+    columns:
+      - name: recall_number
+        data_tests: [unique, not_null]
+
+  - name: stg_faers__demo
+    description: FAERS report versions (view over the external table). Age normalised to years, weight to kg.
+
+  - name: stg_faers__stream_events
+    description: Kafka intake events, deduplicated by event_id (at-least-once delivery).
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]

@@ -1,0 +1,9 @@
+snapshots:
+  - name: snap_ct_studies
+    description: SCD type 2 history of clinical trial status, phase and timelines (one row per version of a study).
+    relation: ref('stg_ct__studies')
+    config:
+      schema: intermediate
+      unique_key: nct_id
+      strategy: check
+      check_cols: [overall_status, phases, enrollment_count, primary_completion_date, completion_date]

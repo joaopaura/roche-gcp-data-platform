@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: Roche product dimension with portfolio segment (growth, established, loss of exclusivity).
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+
+  - name: dim_date
+    description: Calendar 2019-2030.
+    columns:
+      - name: date_day
+        data_tests: [unique, not_null]
+
+  - name: dim_therapeutic_area
+    columns:
+      - name: therapeutic_area
+        data_tests: [unique, not_null]
+
+  - name: fct_us_spending
+    description: Real Medicare spend on Roche products per product, program (Part B / D) and year, in USD and CHF.
+    columns:
+      - name: spending_key
+        data_tests: [unique, not_null]
+      - name: product_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_id
+      - name: program
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Part B', 'Part D']
+
+  - name: fct_clinical_trials
+    description: One row per clinical trial with primary Roche product, therapeutic area, phase, status and timelines.
+    columns:
+      - name: nct_id
+        data_tests: [unique, not_null]
+      - name: therapeutic_area
+        data_tests: [not_null]
+      - name: primary_product_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_id
+
+  - name: fct_safety_cases
+    description: One row per latest FAERS case and Roche primary-suspect product.
+    columns:
+      - name: safety_case_key
+        data_tests: [unique, not_null]
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_id
+
+  - name: fct_safety_signals
+    description: PRR disproportionality per Roche product and reaction (statistical signal, not causality).
+    columns:
+      - name: signal_key
+        data_tests: [unique, not_null]
+      - name: prr
+        data_tests:
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "> 0"
+
+  - name: fct_recalls
+    columns:
+      - name: recall_number
+        data_tests: [unique, not_null]
+
+  - name: fct_intake_stream
+    description: Adverse event intake received via Kafka (streaming replay of real FAERS cases).
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]

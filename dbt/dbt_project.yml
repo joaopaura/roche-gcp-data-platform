@@ -1,0 +1,61 @@
+name: roche_platform
+version: "1.0.0"
+config-version: 2
+profile: roche
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  roche_senders_regex: "ROCHE|GENENTECH|HOFFMANN|CHUGAI"
+  cms_years: [2020, 2021, 2022, 2023, 2024]
+  prr_min_cases: 3        # Evans criteria for a disproportionality signal:
+  prr_threshold: 2        #   a >= 3 cases, PRR >= 2 and chi-square >= 4
+  chi_square_threshold: 4
+
+on-run-start:
+  - "{{ create_run_results_table() }}"
+
+on-run-end:
+  - "{{ log_run_results(results) }}"
+
+models:
+  roche_platform:
+    +labels:
+      project: roche-data-platform
+      managed_by: dbt
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+    ops:
+      +schema: ops
+      +materialized: view
+
+seeds:
+  roche_platform:
+    +schema: staging
+    roche_product_aliases:
+      +column_types:
+        requires_roche_sender: boolean
+    roche_products:
+      +column_types:
+        us_approval_year: int64
+        generic_or_biosimilar_us_entry_year: int64
+    faers_occupation_codes:
+      +column_types:
+        is_health_professional: boolean
+
+snapshots:
+  roche_platform:
+    +schema: intermediate

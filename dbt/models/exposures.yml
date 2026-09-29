@@ -1,0 +1,24 @@
+version: 2
+
+exposures:
+  - name: roche_executive_dashboard
+    label: Roche Executive Dashboard (Power BI)
+    type: dashboard
+    maturity: medium
+    description: Cover + Commercial, R&D Pipeline, Safety & Pharmacovigilance and Pipeline Health pages.
+    owner:
+      name: João Paúra
+    depends_on:
+      - ref('dim_product')
+      - ref('dim_date')
+      - ref('dim_therapeutic_area')
+      - ref('fct_us_spending')
+      - ref('fct_clinical_trials')
+      - ref('fct_safety_cases')
+      - ref('fct_safety_signals')
+      - ref('fct_recalls')
+      - ref('fct_intake_stream')
+      - ref('ops_ingestion_runs')
+      - ref('ops_kafka_batches')
+      - ref('ops_layer_volumes')
+      - ref('ops_dbt_run_results')
