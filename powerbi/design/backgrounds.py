@@ -92,7 +92,7 @@ def arch() -> str:
     s += b(X[1], 180, W, 76, "Kafka streaming", "Producer, consumer, DLQ", "#FDEBDD")
     s += b(X[2], 84, W, 172, "Data lake", "Cloud Storage<br>raw + bronze Parquet<br>~1.9 GB, 157M rows", "#E8EEFC")
     s += b(X[3], 84, W, 172, "Warehouse", "BigQuery<br>external tables +<br>load jobs", "#E8EEFC")
-    s += b(X[4], 84, W, 172, "Transform", "dbt Core<br>staging, intermediate,<br>marts, 90+ tests", "#E3F4EF")
+    s += b(X[4], 84, W, 172, "Transform", "dbt Core<br>staging, intermediate,<br>marts, 58 tests", "#E3F4EF")
     s += b(X[5], 84, 110, 172, "Power BI", "Import mode<br>5 pages", "#0B41CD", "#FFFFFF")
     for i in range(5):
         if i == 0:
@@ -163,7 +163,7 @@ def cover() -> str:
         h += (f"<div class='abs' style='left:{x}px;top:690px;height:36px;width:{w}px;border-radius:18px;background:{T['blue_soft']};"
               f"color:{T['blue']};font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center'>{c}</div>")
         x += w + 10
-    facts = [("157M", "FAERS rows in the lakehouse"), ("90+", "automated data quality tests"),
+    facts = [("157M", "FAERS rows in the lakehouse"), ("71", "automated tests (dbt + Python)"),
              ("0", "service account keys (keyless CI/CD)"), ("Daily", "scheduled pipeline on GitHub Actions")]
     for i, (big, small) in enumerate(facts):
         x = 48 + i * 262
