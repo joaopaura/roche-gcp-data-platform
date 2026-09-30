@@ -1,0 +1,146 @@
+table ops_dbt_run_results
+	lineageTag: faaf25f3-fd9b-4d1b-b08c-c33c43f3e7a6
+
+	column invocation_id
+		dataType: string
+		lineageTag: 4cf77bb1-c591-4828-8d56-7e7c39cb60cc
+		summarizeBy: none
+		sourceColumn: invocation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column run_started_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 839b95c6-8bed-4f9b-bd37-67040663d1a5
+		summarizeBy: none
+		sourceColumn: run_started_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column run_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dac1a193-c435-4a23-b6ba-64625ea50ced
+		summarizeBy: none
+		sourceColumn: run_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column target_name
+		dataType: string
+		lineageTag: b5e182ed-2c5b-4352-8927-dc21ac39a036
+		summarizeBy: none
+		sourceColumn: target_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column node_id
+		dataType: string
+		lineageTag: dfdd82c6-d5b2-4a20-a47f-751f0a688348
+		summarizeBy: none
+		sourceColumn: node_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column resource_type
+		dataType: string
+		lineageTag: 56f76f7a-2c51-4b82-932b-f474bdaa3e7a
+		summarizeBy: none
+		sourceColumn: resource_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column node_name
+		dataType: string
+		lineageTag: 4db8f8e1-b408-4b04-bb4a-16b2869bd63f
+		summarizeBy: none
+		sourceColumn: node_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 47e30769-ac79-41ed-b1e0-6f15f6ef62c3
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column failures
+		dataType: int64
+		formatString: 0
+		lineageTag: a52b731e-dbcb-4ee2-b6f5-e05db82518ac
+		summarizeBy: sum
+		sourceColumn: failures
+
+		annotation SummarizationSetBy = Automatic
+
+	column execution_time_sec
+		dataType: double
+		lineageTag: 1f13342c-80f4-4e1f-a942-472a0ee30f1c
+		summarizeBy: sum
+		sourceColumn: execution_time_sec
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rows_affected
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c9cd57e-2a00-4aef-8b0d-2aae5a77681a
+		summarizeBy: sum
+		sourceColumn: rows_affected
+
+		annotation SummarizationSetBy = Automatic
+
+	column bytes_processed
+		dataType: int64
+		formatString: 0
+		lineageTag: e24ac163-c2da-493d-bf7f-fb57c2e37fa7
+		summarizeBy: sum
+		sourceColumn: bytes_processed
+
+		annotation SummarizationSetBy = Automatic
+
+	column bytes_billed
+		dataType: int64
+		formatString: 0
+		lineageTag: a54d83be-a938-4fb5-afb0-37d903c4312c
+		summarizeBy: sum
+		sourceColumn: bytes_billed
+
+		annotation SummarizationSetBy = Automatic
+
+	column estimated_cost_usd
+		dataType: double
+		lineageTag: 988704bb-5d63-408e-aedb-2c22ef2985ad
+		summarizeBy: sum
+		sourceColumn: estimated_cost_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column message
+		dataType: string
+		lineageTag: 5a05cce3-ac9f-4c09-8fdf-b5ba4a5fc009
+		summarizeBy: none
+		sourceColumn: message
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ops_dbt_run_results = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    ops_Schema = #"roche-data-platform_Database"{[Name="ops",Kind="Schema"]}[Data],
+				    ops_dbt_run_results_View = ops_Schema{[Name="ops_dbt_run_results",Kind="View"]}[Data]
+				in
+				    ops_dbt_run_results_View
+

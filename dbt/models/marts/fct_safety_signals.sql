@@ -8,6 +8,8 @@
   PRR = [a / (a + b)] / [c / (c + d)]   | signal when a >= 3, PRR >= 2 and chi-square (Yates) >= 4
   A statistical signal is a hypothesis for medical review, not proof of causality.
   is_indication_related flags confounding by indication (the treated disease reported as a reaction).
+  is_non_clinical_term flags product-use / administrative MedDRA terms (off label use, drug ineffective...).
+  is_reportable_signal = signal that is neither indication-related nor a non-clinical term.
 #}
 with product_reaction as (
     select * from {{ ref('int_faers__product_reaction_counts') }}
@@ -58,8 +60,9 @@ stats as (
             (a + b) * (c + d) * (a + c) * (b + d)
         ) as chi_square
     from cells
-)
+),
 
+final as (
 select
     {{ dbt_utils.generate_surrogate_key(['product_id', 'reaction_pt']) }} as signal_key,
     product_id,
@@ -79,6 +82,13 @@ select
         where it.product_id = stats.product_id
           and strpos(lower(stats.reaction_pt), it.indication_lower) > 0
     ) as is_indication_related,
+    {{ is_non_clinical_term('reaction_pt') }} as is_non_clinical_term,
     rank() over (partition by product_id order by a desc) as rank_by_cases
 from stats
 where c > 0
+)
+
+select
+    *,
+    is_signal and not is_indication_related and not is_non_clinical_term as is_reportable_signal
+from final

@@ -1,0 +1,58 @@
+createOrReplace
+
+	relationship spend_to_product
+		fromColumn: fct_us_spending.product_id
+		toColumn: dim_product.product_id
+
+	relationship spend_to_date
+		fromColumn: fct_us_spending.year_date
+		toColumn: dim_date.date_day
+
+	relationship cases_to_product
+		fromColumn: fct_safety_cases.product_id
+		toColumn: dim_product.product_id
+
+	relationship cases_to_date
+		fromColumn: fct_safety_cases.fda_date
+		toColumn: dim_date.date_day
+
+	relationship signals_to_product
+		fromColumn: fct_safety_signals.product_id
+		toColumn: dim_product.product_id
+
+	relationship recalls_to_product
+		fromColumn: fct_recalls.product_id
+		toColumn: dim_product.product_id
+
+	relationship intake_to_product
+		fromColumn: fct_intake_stream.product_id
+		toColumn: dim_product.product_id
+
+	relationship intake_to_date
+		fromColumn: fct_intake_stream.received_date
+		toColumn: dim_date.date_day
+
+	relationship product_to_area
+		fromColumn: dim_product.therapeutic_area
+		toColumn: dim_therapeutic_area.therapeutic_area
+
+	relationship trials_to_area
+		fromColumn: fct_clinical_trials.therapeutic_area
+		toColumn: dim_therapeutic_area.therapeutic_area
+
+	relationship trials_to_product
+		isActive: false
+		fromColumn: fct_clinical_trials.primary_product_id
+		toColumn: dim_product.product_id
+
+	relationship runs_to_date
+		fromColumn: ops_ingestion_runs.run_date
+		toColumn: dim_date.date_day
+
+	relationship kafka_to_date
+		fromColumn: ops_kafka_batches.batch_date
+		toColumn: dim_date.date_day
+
+	relationship dbt_results_to_date
+		fromColumn: ops_dbt_run_results.run_date
+		toColumn: dim_date.date_day

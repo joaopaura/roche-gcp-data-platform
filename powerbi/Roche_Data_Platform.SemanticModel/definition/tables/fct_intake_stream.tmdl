@@ -1,0 +1,153 @@
+table fct_intake_stream
+	lineageTag: 1503d64a-96bc-4a04-bdeb-a3d4a73d0eab
+
+	column event_id
+		dataType: string
+		lineageTag: f5472dc7-70b5-40c1-9de7-60c641da02c6
+		summarizeBy: none
+		sourceColumn: event_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 02402510-9d98-4f26-ba75-f544b9944146
+		summarizeBy: none
+		sourceColumn: received_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c8a989a3-83fe-4dc2-8658-f602707a328c
+		summarizeBy: none
+		sourceColumn: received_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1f19c230-db25-41b0-b80f-8286f4b0dcf0
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column intake_latency_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 326028f8-956d-46db-92cd-72a27538e32e
+		summarizeBy: sum
+		sourceColumn: intake_latency_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column caseid
+		dataType: string
+		lineageTag: a84c76e1-4f16-443f-9aa6-2cc76e2c5a86
+		summarizeBy: none
+		sourceColumn: caseid
+
+		annotation SummarizationSetBy = Automatic
+
+	column primaryid
+		dataType: string
+		lineageTag: 22cbd16e-0d97-47a5-99b3-eb5684720d43
+		summarizeBy: none
+		sourceColumn: primaryid
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: f5ac179b-7835-4ad8-9e66-448f0096bda0
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporter_country
+		dataType: string
+		lineageTag: fd5d9e4e-8da8-4668-9ebc-b271ab2e3e6a
+		summarizeBy: none
+		sourceColumn: reporter_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		lineageTag: 410d7fbf-ec56-468c-a8d4-845b5263d15b
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column drug_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 1987d389-4db0-489b-ae64-6a571b8d30f5
+		summarizeBy: sum
+		sourceColumn: drug_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column reaction_count
+		dataType: int64
+		formatString: 0
+		lineageTag: fb1b103e-3e6f-427d-a912-c9db94aa22d7
+		summarizeBy: sum
+		sourceColumn: reaction_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_serious
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ee17df3c-9cbb-43b7-8476-7f266d426805
+		summarizeBy: none
+		sourceColumn: is_serious
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_death
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5aa276e9-0281-4616-be99-94a67c74b605
+		summarizeBy: none
+		sourceColumn: is_death
+
+		annotation SummarizationSetBy = Automatic
+
+	column kafka_partition
+		dataType: int64
+		formatString: 0
+		lineageTag: f3eb794e-2aba-4bc1-b1f0-4bf96f8aaef0
+		summarizeBy: sum
+		sourceColumn: kafka_partition
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_id
+		dataType: string
+		lineageTag: 001d2697-1b5c-4e2b-bd8b-e0a91cb57a7e
+		summarizeBy: none
+		sourceColumn: batch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_intake_stream = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    fct_intake_stream_Table = marts_Schema{[Name="fct_intake_stream",Kind="Table"]}[Data]
+				in
+				    fct_intake_stream_Table
+

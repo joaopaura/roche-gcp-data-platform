@@ -1,0 +1,31 @@
+table dim_therapeutic_area
+	lineageTag: a4aa2741-a48d-48d2-b56d-c73f404b0fd6
+
+	column therapeutic_area
+		dataType: string
+		lineageTag: bd70bd3c-0208-4274-9ea5-83f0a3e8b783
+		summarizeBy: none
+		sourceColumn: therapeutic_area
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: aa679a8d-b22f-4ba0-b3c9-3547b6ded2fc
+		summarizeBy: sum
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_therapeutic_area = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    dim_therapeutic_area_Table = marts_Schema{[Name="dim_therapeutic_area",Kind="Table"]}[Data]
+				in
+				    dim_therapeutic_area_Table
+

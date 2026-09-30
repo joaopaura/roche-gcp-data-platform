@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Roche_Data_Platform"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "09e1bd32-fe23-4eb0-9392-926867050eb6"
+  }
+}

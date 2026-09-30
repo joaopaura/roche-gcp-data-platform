@@ -67,6 +67,9 @@ models:
     columns:
       - name: signal_key
         data_tests: [unique, not_null]
+      - name: is_reportable_signal
+        description: Evans signal, excluding indication-related and non-clinical (product use / administrative) MedDRA terms.
+        data_tests: [not_null]
       - name: prr
         data_tests:
           - dbt_utils.expression_is_true:

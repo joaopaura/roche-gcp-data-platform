@@ -1,0 +1,251 @@
+table fct_safety_cases
+	lineageTag: c93e45c4-7cb4-4ffb-b50d-3897628e2225
+
+	column safety_case_key
+		dataType: string
+		lineageTag: 2bc1a6d1-ca65-446d-b7c6-1bb87b18a924
+		summarizeBy: none
+		sourceColumn: safety_case_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column primaryid
+		dataType: string
+		lineageTag: 2aca78b9-e74a-4f57-93d0-44588dd7af7f
+		summarizeBy: none
+		sourceColumn: primaryid
+
+		annotation SummarizationSetBy = Automatic
+
+	column caseid
+		dataType: string
+		lineageTag: e90921d1-7a60-4035-bd09-86358afe3180
+		summarizeBy: none
+		sourceColumn: caseid
+
+		annotation SummarizationSetBy = Automatic
+
+	column caseversion
+		dataType: int64
+		formatString: 0
+		lineageTag: be5d9072-fa7e-490a-a949-7734b9af0c82
+		summarizeBy: sum
+		sourceColumn: caseversion
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: b50ff213-ec3c-4fe6-8bd9-219e30809cf2
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column match_method
+		dataType: string
+		lineageTag: cffba919-ee4e-4d08-ae1c-c639f12f5cf8
+		summarizeBy: none
+		sourceColumn: match_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: string
+		lineageTag: 4b95a99b-8bba-4d0d-8690-c94c8f3dbc3b
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column fda_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0445d181-8f40-4db9-913d-e7e0e43a4ebc
+		summarizeBy: none
+		sourceColumn: fda_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column init_fda_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: be0d0d93-8a66-4b9e-9951-10edcb84f25a
+		summarizeBy: none
+		sourceColumn: init_fda_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column event_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c362bcd1-b825-4563-ab54-535dba0a897f
+		summarizeBy: none
+		sourceColumn: event_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column report_type
+		dataType: string
+		lineageTag: 588905ef-2541-4ecd-9301-c3f4bac4f5e3
+		summarizeBy: none
+		sourceColumn: report_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_type_label
+		dataType: string
+		lineageTag: fe5a1237-2dde-4f08-bc80-4543bac14df3
+		summarizeBy: none
+		sourceColumn: report_type_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_roche_sender
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 32b544ee-c09b-4460-9ec3-f10859e09ad1
+		summarizeBy: none
+		sourceColumn: is_roche_sender
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporter_type
+		dataType: string
+		lineageTag: b589a658-0626-445c-be77-06ae4637ae9f
+		summarizeBy: none
+		sourceColumn: reporter_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_health_professional_report
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d4468598-d447-46c7-b4bd-f62b560cf9bd
+		summarizeBy: none
+		sourceColumn: is_health_professional_report
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporter_country
+		dataType: string
+		lineageTag: 773a5263-c3f4-4f71-9690-19540970ebac
+		summarizeBy: none
+		sourceColumn: reporter_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column occurrence_country
+		dataType: string
+		lineageTag: 8a3278ab-29e4-4a24-9611-e5925fc4d74b
+		summarizeBy: none
+		sourceColumn: occurrence_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		lineageTag: 0372abe7-f9a9-49fa-a0e5-b2d5342f83bc
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_years
+		dataType: double
+		lineageTag: 3458e0d1-6dbe-4ba2-a20a-12eba2ab1971
+		summarizeBy: sum
+		sourceColumn: age_years
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column age_group
+		dataType: string
+		lineageTag: c88182c1-c946-41b5-b182-7e6d515f5d26
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_kg
+		dataType: double
+		lineageTag: 6c66014f-62e4-499c-a45e-6f318e45dd57
+		summarizeBy: sum
+		sourceColumn: weight_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outcome_codes
+		dataType: string
+		lineageTag: 44a3d272-e258-41e8-8b0f-e7e8e4540ac7
+		summarizeBy: none
+		sourceColumn: outcome_codes
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_serious
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: da241028-ef90-4163-a38d-4e4317dc2c07
+		summarizeBy: none
+		sourceColumn: is_serious
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_death
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bd7b5ac4-cb07-46dd-afb6-d8f9cb3045e1
+		summarizeBy: none
+		sourceColumn: is_death
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_life_threatening
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a7866164-db45-45bc-adc9-858e6238f656
+		summarizeBy: none
+		sourceColumn: is_life_threatening
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_hospitalisation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 64dc5054-a32a-425b-9c4c-ce2874f834dc
+		summarizeBy: none
+		sourceColumn: is_hospitalisation
+
+		annotation SummarizationSetBy = Automatic
+
+	column reaction_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0430f25c-845d-4f44-b6ad-a3a5efa9ca78
+		summarizeBy: sum
+		sourceColumn: reaction_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_safety_cases = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    fct_safety_cases_Table = marts_Schema{[Name="fct_safety_cases",Kind="Table"]}[Data]
+				in
+				    fct_safety_cases_Table
+

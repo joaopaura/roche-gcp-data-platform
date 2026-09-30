@@ -1,0 +1,120 @@
+table fct_recalls
+	lineageTag: 83d316df-cf57-4fbc-bd20-a83e2071cdd5
+
+	column recall_number
+		dataType: string
+		lineageTag: 11fa56ca-3a49-4008-9555-2e70b37cf05f
+		summarizeBy: none
+		sourceColumn: recall_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 98208a04-60b9-4401-98d1-50b1eaefbb54
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification
+		dataType: string
+		lineageTag: 93ac0dd7-1004-41a4-aec1-d3815a0ea263
+		summarizeBy: none
+		sourceColumn: classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 365a5221-686d-477b-962f-f8ba16758f84
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column reason_category
+		dataType: string
+		lineageTag: 77536e2d-c806-4df8-af51-9ba9dcd14627
+		summarizeBy: none
+		sourceColumn: reason_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column reason_for_recall
+		dataType: string
+		lineageTag: 86d0ced8-022f-4bf3-9a3b-f99e85db0ce1
+		summarizeBy: none
+		sourceColumn: reason_for_recall
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description
+		dataType: string
+		lineageTag: 6185102e-31f3-443b-844b-42d7f543cd75
+		summarizeBy: none
+		sourceColumn: product_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column voluntary_mandated
+		dataType: string
+		lineageTag: 030551b0-d511-413f-9ee0-4a1591d6e314
+		summarizeBy: none
+		sourceColumn: voluntary_mandated
+
+		annotation SummarizationSetBy = Automatic
+
+	column recall_initiation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5c1035a8-089f-42cb-aa03-b2b8baec920d
+		summarizeBy: none
+		sourceColumn: recall_initiation_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column classification_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c5ec0a47-6fe4-42f0-aabf-4b8b818c4ace
+		summarizeBy: none
+		sourceColumn: classification_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column termination_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 91fcd772-78c0-4fa3-a634-14c153714b3e
+		summarizeBy: none
+		sourceColumn: termination_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column recall_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 579f78bf-9851-4392-b241-8489e13815c1
+		summarizeBy: sum
+		sourceColumn: recall_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_recalls = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    fct_recalls_Table = marts_Schema{[Name="fct_recalls",Kind="Table"]}[Data]
+				in
+				    fct_recalls_Table
+

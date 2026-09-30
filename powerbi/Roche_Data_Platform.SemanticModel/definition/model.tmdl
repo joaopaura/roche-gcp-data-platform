@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim_date","dim_product","dim_therapeutic_area","fct_clinical_trials","fct_intake_stream","fct_recalls","fct_safety_cases","fct_safety_signals","fct_us_spending","ops_dbt_run_results","ops_ingestion_runs","ops_kafka_batches","ops_layer_volumes","_Measures"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
+
+ref table dim_date
+ref table dim_product
+ref table dim_therapeutic_area
+ref table fct_clinical_trials
+ref table fct_intake_stream
+ref table fct_recalls
+ref table fct_safety_cases
+ref table fct_safety_signals
+ref table fct_us_spending
+ref table ops_dbt_run_results
+ref table ops_ingestion_runs
+ref table ops_kafka_batches
+ref table ops_layer_volumes
+ref table _Measures
+
+ref cultureInfo en-US
+

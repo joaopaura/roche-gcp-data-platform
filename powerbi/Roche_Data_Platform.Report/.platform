@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Roche_Data_Platform"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4bf007ad-12a0-4d6e-ae98-4713cd2fd2ad"
+  }
+}

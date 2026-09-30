@@ -1,0 +1,134 @@
+table ops_kafka_batches
+	lineageTag: e7bcca7a-b666-4d6f-abc5-ac3c8ebc6f55
+
+	column batch_id
+		dataType: string
+		lineageTag: 5861b4c7-202c-4688-97d0-6947c376c7be
+		summarizeBy: none
+		sourceColumn: batch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4252077f-337b-47ad-bb93-7e44de5b5f7c
+		summarizeBy: none
+		sourceColumn: batch_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bd97405e-e988-4440-ba1f-de2b7cf9f7ee
+		summarizeBy: none
+		sourceColumn: batch_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column topic
+		dataType: string
+		lineageTag: 20d1c574-3098-4cc9-a7ed-aecd5bb677ec
+		summarizeBy: none
+		sourceColumn: topic
+
+		annotation SummarizationSetBy = Automatic
+
+	column consumer_group
+		dataType: string
+		lineageTag: 280cd9ff-76a8-47fd-9236-148b97a5adec
+		summarizeBy: none
+		sourceColumn: consumer_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column messages
+		dataType: int64
+		formatString: 0
+		lineageTag: f794c340-736b-4cbc-b599-8ad831883fcc
+		summarizeBy: sum
+		sourceColumn: messages
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid
+		dataType: int64
+		formatString: 0
+		lineageTag: 8aea6ea7-573b-4382-84d3-3d7ffd68a9db
+		summarizeBy: sum
+		sourceColumn: valid
+
+		annotation SummarizationSetBy = Automatic
+
+	column invalid
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d4b5e34-86a7-4b05-907e-e852c4d7cde7
+		summarizeBy: sum
+		sourceColumn: invalid
+
+		annotation SummarizationSetBy = Automatic
+
+	column invalid_rate
+		dataType: double
+		lineageTag: 3eb19103-311b-4507-abe4-eb9491ef3195
+		summarizeBy: sum
+		sourceColumn: invalid_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column consumer_lag
+		dataType: int64
+		formatString: 0
+		lineageTag: 986f83a9-6199-4caa-8b7b-9a548d5dc59e
+		summarizeBy: sum
+		sourceColumn: consumer_lag
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_seconds
+		dataType: double
+		lineageTag: 4b2a3c3d-1dc1-4010-9aee-ad614b0aea75
+		summarizeBy: sum
+		sourceColumn: batch_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column throughput_msg_per_sec
+		dataType: double
+		lineageTag: d96bf806-0878-49ea-8204-633fbe353c16
+		summarizeBy: sum
+		sourceColumn: throughput_msg_per_sec
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gcs_uri
+		dataType: string
+		lineageTag: e2191c01-8a7f-44b7-8b0a-3f32ae2a363a
+		summarizeBy: none
+		sourceColumn: gcs_uri
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ops_kafka_batches = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    ops_Schema = #"roche-data-platform_Database"{[Name="ops",Kind="Schema"]}[Data],
+				    ops_kafka_batches_View = ops_Schema{[Name="ops_kafka_batches",Kind="View"]}[Data]
+				in
+				    ops_kafka_batches_View
+
+	annotation PBI_ResultType = Table
+

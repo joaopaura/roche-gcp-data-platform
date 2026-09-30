@@ -13,7 +13,7 @@ primary_product as (
 ),
 
 products as (
-    select product_id, therapeutic_area from {{ ref('roche_products') }}
+    select product_id, brand_name, therapeutic_area from {{ ref('roche_products') }}
 )
 
 select
@@ -21,6 +21,7 @@ select
     s.brief_title,
     s.acronym,
     pp.product_id as primary_product_id,
+    coalesce(p.brand_name, 'No marketed Roche product') as primary_product_brand,
     coalesce(pp.roche_product_count, 0) as roche_product_count,
     coalesce(p.therapeutic_area, {{ therapeutic_area_from_text("concat(coalesce(s.mesh_terms, ''), ' ', coalesce(s.conditions, ''))") }}) as therapeutic_area,
     s.overall_status,
@@ -30,6 +31,7 @@ select
     s.phase_sort,
     s.study_type,
     s.is_roche_led,
+    if(s.is_roche_led, 'Roche-led', 'Collaboration') as sponsor_role,
     s.lead_sponsor,
     s.start_date,
     s.primary_completion_date,

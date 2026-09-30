@@ -1,0 +1,13 @@
+createOrReplace
+
+	ref table _Measures
+
+		/// Most serious recall class (reasonable probability of serious health consequences).
+		measure 'Class I Recalls' = CALCULATE ( [Product Recalls], fct_recalls[classification] = "Class I" )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Cases with any serious outcome (label for the outcome chart).
+		measure 'Any Serious Outcome' = [Serious Cases]
+			formatString: #,0
+			displayFolder: 03 Safety

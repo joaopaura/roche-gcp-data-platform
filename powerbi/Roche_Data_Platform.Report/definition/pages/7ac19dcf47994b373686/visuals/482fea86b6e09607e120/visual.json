@@ -1,0 +1,458 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "482fea86b6e09607e120",
+  "position": {
+    "x": 927.42857142857144,
+    "y": 363,
+    "z": 3000,
+    "height": 262,
+    "width": 852,
+    "tabOrder": 18
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_clinical_trials"
+                    }
+                  },
+                  "Property": "primary_completion_date"
+                }
+              },
+              "queryRef": "fct_clinical_trials.primary_completion_date",
+              "nativeQueryRef": "Readout",
+              "displayName": "Readout"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_clinical_trials"
+                    }
+                  },
+                  "Property": "nct_id"
+                }
+              },
+              "queryRef": "fct_clinical_trials.nct_id",
+              "nativeQueryRef": "NCT ID",
+              "displayName": "NCT ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_clinical_trials"
+                    }
+                  },
+                  "Property": "brief_title"
+                }
+              },
+              "queryRef": "fct_clinical_trials.brief_title",
+              "nativeQueryRef": "Study",
+              "displayName": "Study"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_clinical_trials"
+                    }
+                  },
+                  "Property": "primary_product_brand"
+                }
+              },
+              "queryRef": "fct_clinical_trials.primary_product_brand",
+              "nativeQueryRef": "Product",
+              "displayName": "Product"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_clinical_trials"
+                    }
+                  },
+                  "Property": "phase_group"
+                }
+              },
+              "queryRef": "fct_clinical_trials.phase_group",
+              "nativeQueryRef": "Phase",
+              "displayName": "Phase"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fct_clinical_trials"
+                        }
+                      },
+                      "Property": "enrollment_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fct_clinical_trials.enrollment_count)",
+              "nativeQueryRef": "Patients",
+              "displayName": "Patients"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_clinical_trials"
+                  }
+                },
+                "Property": "primary_completion_date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "296.134501436408D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fct_clinical_trials.brief_title"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Table_UpcomingReadouts_P2'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "b9deaca163a7100b0ed7",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "67297058344b6101c050",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "primary_completion_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5cf33977c1b2be962175",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "nct_id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fc775e717191997a10c7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "brief_title"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7155120600e7d2220956",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "primary_product_brand"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3b96583b7b07d6b94e9e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "phase_group"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "688093052043c27e0035",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_clinical_trials"
+                  }
+                },
+                "Property": "enrollment_count"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "144bdc3f8634b0960464",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "readout_next_12_months"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fct_clinical_trials",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "readout_next_12_months"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "b7522336134990a6e435",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "is_roche_led"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fct_clinical_trials",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "is_roche_led"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "b5e543901c649011c460",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_clinical_trials"
+              }
+            },
+            "Property": "phase_group"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fct_clinical_trials",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "phase_group"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Not applicable'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,284 @@
+table fct_clinical_trials
+	lineageTag: af435c9f-db89-45f0-883f-8172e67c887f
+
+	column nct_id
+		dataType: string
+		lineageTag: 00e68480-a5db-4a9f-b4ea-73c58cf494ae
+		summarizeBy: none
+		sourceColumn: nct_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column brief_title
+		dataType: string
+		lineageTag: 42052746-85cc-4e55-b65b-ad591ec54531
+		summarizeBy: none
+		sourceColumn: brief_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column acronym
+		dataType: string
+		lineageTag: 054990fa-b08e-4f9b-94b9-4ef9f7f35395
+		summarizeBy: none
+		sourceColumn: acronym
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_product_id
+		dataType: string
+		lineageTag: 5c5db7f4-2d54-40ad-a39c-7e2b51d000e1
+		summarizeBy: none
+		sourceColumn: primary_product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_product_brand
+		dataType: string
+		lineageTag: 5f682b50-200d-4329-9b89-0a5d81627b1c
+		summarizeBy: none
+		sourceColumn: primary_product_brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column roche_product_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a5b98ae-e621-4154-b740-349cc8a3c72b
+		summarizeBy: sum
+		sourceColumn: roche_product_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column therapeutic_area
+		dataType: string
+		lineageTag: d92b5a4c-2830-4d7a-bd4a-39ccf32c260e
+		summarizeBy: none
+		sourceColumn: therapeutic_area
+
+		annotation SummarizationSetBy = Automatic
+
+	column overall_status
+		dataType: string
+		lineageTag: 300653ca-d7c6-4f59-8f97-2be7e9bb2c46
+		summarizeBy: none
+		sourceColumn: overall_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_group
+		dataType: string
+		lineageTag: 23b829ca-c1cc-4871-99a2-ca330ad79e00
+		summarizeBy: none
+		sourceColumn: status_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column why_stopped
+		dataType: string
+		lineageTag: 2648b858-afb1-448b-9841-3e401fcfada7
+		summarizeBy: none
+		sourceColumn: why_stopped
+
+		annotation SummarizationSetBy = Automatic
+
+	column phase_group
+		dataType: string
+		lineageTag: 80f1ed19-ce95-400b-84f6-70e21b4245c5
+		summarizeBy: none
+		sourceColumn: phase_group
+		sortByColumn: phase_sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column phase_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: b4fa54d3-1216-40b5-be6f-f7d48359169a
+		summarizeBy: sum
+		sourceColumn: phase_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column study_type
+		dataType: string
+		lineageTag: 559a84fd-9f4d-4de4-b044-e893795cefd1
+		summarizeBy: none
+		sourceColumn: study_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_roche_led
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 211ad9ca-251b-47dd-92c2-ce89cfa651b8
+		summarizeBy: none
+		sourceColumn: is_roche_led
+
+		annotation SummarizationSetBy = Automatic
+
+	column sponsor_role
+		dataType: string
+		lineageTag: ad713739-d7bb-44f0-96f5-6dcea4fcb1f6
+		summarizeBy: none
+		sourceColumn: sponsor_role
+
+		annotation SummarizationSetBy = Automatic
+
+	column lead_sponsor
+		dataType: string
+		lineageTag: 23f42683-8e1e-4264-a1aa-7fdce9e741db
+		summarizeBy: none
+		sourceColumn: lead_sponsor
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a321660b-2140-407b-aba1-47b160e6cc18
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column primary_completion_date
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: f5cd6a87-4937-48aa-8b00-75e5f2bd7a59
+		summarizeBy: none
+		sourceColumn: primary_completion_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column completion_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 427ad84f-e426-49a0-bade-d2e96f1bfa2a
+		summarizeBy: none
+		sourceColumn: completion_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_update_post_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7c69082d-a8ed-4f05-91f5-f06ec5c8e020
+		summarizeBy: none
+		sourceColumn: last_update_post_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column start_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 687201c5-33ce-4f4c-908f-191bdc378e81
+		summarizeBy: sum
+		sourceColumn: start_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_duration_months
+		dataType: int64
+		formatString: 0
+		lineageTag: cba947dc-ba41-41d6-b5bb-a683cad280b9
+		summarizeBy: sum
+		sourceColumn: planned_duration_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column readout_next_12_months
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dca0dfda-b4c8-4b96-b70e-a9ed878307e7
+		summarizeBy: none
+		sourceColumn: readout_next_12_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column enrollment_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b1b0694-84e7-4df7-9ed1-a408c269a236
+		summarizeBy: none
+		sourceColumn: enrollment_count
+
+		annotation SummarizationSetBy = User
+
+	column enrollment_type
+		dataType: string
+		lineageTag: 9677b25a-be96-4842-bad2-4577dd068378
+		summarizeBy: none
+		sourceColumn: enrollment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_count
+		dataType: int64
+		formatString: 0
+		lineageTag: f3f6651b-7175-449b-8948-283df72daa6c
+		summarizeBy: sum
+		sourceColumn: country_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 31564b30-7563-4ac3-a5a3-044206118af8
+		summarizeBy: sum
+		sourceColumn: location_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_results
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e2dbdcf1-d24a-43dd-a2a9-b3ade899518e
+		summarizeBy: none
+		sourceColumn: has_results
+
+		annotation SummarizationSetBy = Automatic
+
+	column conditions
+		dataType: string
+		lineageTag: f30c0859-b4e8-4043-8a62-12f3507ce736
+		summarizeBy: none
+		sourceColumn: conditions
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: acb6a22e-ad0e-4bcb-81bf-c2989c120f7b
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fct_clinical_trials = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    fct_clinical_trials_Table = marts_Schema{[Name="fct_clinical_trials",Kind="Table"]}[Data]
+				in
+				    fct_clinical_trials_Table
+

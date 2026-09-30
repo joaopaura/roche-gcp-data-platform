@@ -1,0 +1,86 @@
+table ops_layer_volumes
+	lineageTag: d657e5d9-ddc4-4626-82c1-bcfd1ea530ac
+
+	column layer
+		dataType: string
+		lineageTag: 89ce0260-51a4-4ea1-817f-e08dffb60eaf
+		summarizeBy: none
+		sourceColumn: layer
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_id
+		dataType: string
+		lineageTag: 183a6fff-9320-4ddc-a0f6-54d49d80f076
+		summarizeBy: none
+		sourceColumn: table_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_type
+		dataType: string
+		lineageTag: 9c661faa-4c8d-49f7-91e9-00b73f5365ad
+		summarizeBy: none
+		sourceColumn: table_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b01f68a-3130-4120-a562-30318b06af12
+		summarizeBy: sum
+		sourceColumn: row_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column size_bytes
+		dataType: int64
+		formatString: 0
+		lineageTag: aea18a3c-f93a-4549-a726-1b7a97a9bcfb
+		summarizeBy: sum
+		sourceColumn: size_bytes
+
+		annotation SummarizationSetBy = Automatic
+
+	column size_mb
+		dataType: double
+		lineageTag: e85ad938-e77f-4aea-ab65-8ff1784eec36
+		summarizeBy: sum
+		sourceColumn: size_mb
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column last_modified_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 33a4f0f1-a346-40a9-b6f7-0d862942925f
+		summarizeBy: none
+		sourceColumn: last_modified_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column measured_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a2496ebe-c84f-46b0-ae4d-0d56f2cb04e0
+		summarizeBy: none
+		sourceColumn: measured_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ops_layer_volumes = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    ops_Schema = #"roche-data-platform_Database"{[Name="ops",Kind="Schema"]}[Data],
+				    ops_layer_volumes_Table = ops_Schema{[Name="ops_layer_volumes",Kind="Table"]}[Data]
+				in
+				    ops_layer_volumes_Table
+
+	annotation PBI_ResultType = Table
+

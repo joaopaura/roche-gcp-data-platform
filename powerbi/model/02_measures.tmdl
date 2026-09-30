@@ -1,0 +1,382 @@
+createOrReplace
+
+	ref table _Measures
+
+		/// Last successful ingestion (any source).
+		measure 'Data As Of' = FORMAT ( CALCULATE ( MAX ( ops_ingestion_runs[finished_at] ), REMOVEFILTERS () ), "dd mmm yyyy", "en-US" )
+			displayFolder: 00 Base
+
+		/// Rows loaded from FAERS quarterly files (7 tables), excluding the overlapping duplicate run.
+		measure 'FAERS Records Processed' = CALCULATE ( SUM ( ops_ingestion_runs[rows_loaded] ), ops_ingestion_runs[source] = "faers", ops_ingestion_runs[overlapped_previous_run] = FALSE (), REMOVEFILTERS ( dim_date ) )
+			formatString: #,0
+			displayFolder: 00 Base
+
+		/// All Roche safety cases (latest case version), ignoring filters.
+		measure 'Home Safety Cases' = CALCULATE ( [Safety Cases], REMOVEFILTERS () )
+			formatString: #,0
+			displayFolder: 00 Base
+
+		/// All studies tracked (sponsor or collaborator), ignoring filters.
+		measure 'Home Trials Tracked' = CALCULATE ( [Trials], REMOVEFILTERS () )
+			formatString: #,0
+			displayFolder: 00 Base
+
+		/// Medicare Part B + D spend on Roche products (USD).
+		measure 'Spend USD' = SUM ( fct_us_spending[spending_usd] )
+			formatString: $#,0
+			displayFolder: 01 Commercial
+
+		/// Spend converted to CHF at the ECB annual average rate.
+		measure 'Spend CHF' = SUM ( fct_us_spending[spending_chf] )
+			formatString: CHF #,0
+			displayFolder: 01 Commercial
+
+		/// Spend in the previous year.
+		measure 'Spend USD PY' = CALCULATE ( [Spend USD], DATEADD ( dim_date[date_day], -1, YEAR ) )
+			formatString: $#,0
+			displayFolder: 01 Commercial
+
+		/// Growth vs previous year.
+		measure 'Spend YoY %' = DIVIDE ( [Spend USD] - [Spend USD PY], [Spend USD PY] )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 01 Commercial
+
+		/// CHF spend in the previous year.
+		measure 'Spend CHF PY' = CALCULATE ( [Spend CHF], DATEADD ( dim_date[date_day], -1, YEAR ) )
+			formatString: CHF #,0
+			displayFolder: 01 Commercial
+
+		/// CHF growth vs previous year (includes FX effect).
+		measure 'Spend CHF YoY %' = DIVIDE ( [Spend CHF] - [Spend CHF PY], [Spend CHF PY] )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 01 Commercial
+
+		/// Spend of products launched in 2016 or later.
+		measure 'Spend Growth Brands' = CALCULATE ( [Spend USD], dim_product[portfolio_segment] = "Growth (launched 2016+)" )
+			formatString: $#,0
+			displayFolder: 01 Commercial
+
+		/// Share of spend from growth brands.
+		measure 'Growth Brands Share' = DIVIDE ( [Spend Growth Brands], [Spend USD] )
+			formatString: 0.0%
+			displayFolder: 01 Commercial
+
+		/// Growth brands share in the previous year.
+		measure 'Growth Brands Share PY' = CALCULATE ( [Growth Brands Share], DATEADD ( dim_date[date_day], -1, YEAR ) )
+			formatString: 0.0%
+			displayFolder: 01 Commercial
+
+		/// Change in growth brands share, percentage points.
+		measure 'Growth Brands Share vs PY' = ( [Growth Brands Share] - [Growth Brands Share PY] ) * 100
+			formatString: +0.0 pp;-0.0 pp;0.0 pp
+			displayFolder: 01 Commercial
+
+		/// Spend of products facing biosimilar or generic competition.
+		measure 'Spend LOE' = CALCULATE ( [Spend USD], dim_product[portfolio_segment] = "Loss of exclusivity" )
+			formatString: $#,0
+			displayFolder: 01 Commercial
+
+		/// Loss of exclusivity spend in 2020 (baseline).
+		measure 'Spend LOE 2020' = CALCULATE ( [Spend LOE], REMOVEFILTERS ( dim_date ), dim_date[year] = 2020 )
+			formatString: $#,0
+			displayFolder: 01 Commercial
+
+		/// Change of loss of exclusivity spend vs 2020.
+		measure 'LOE Erosion vs 2020' = DIVIDE ( [Spend LOE], [Spend LOE 2020] ) - 1
+			formatString: +0%;-0%;0%
+			displayFolder: 01 Commercial
+
+		/// Number of Medicare claims for Roche products.
+		measure 'Medicare Claims' = SUM ( fct_us_spending[claims] )
+			formatString: #,0
+			displayFolder: 01 Commercial
+
+		/// Claims in the previous year.
+		measure 'Medicare Claims PY' = CALCULATE ( [Medicare Claims], DATEADD ( dim_date[date_day], -1, YEAR ) )
+			formatString: #,0
+			displayFolder: 01 Commercial
+
+		/// Claims growth vs previous year.
+		measure 'Medicare Claims YoY %' = DIVIDE ( [Medicare Claims] - [Medicare Claims PY], [Medicare Claims PY] )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 01 Commercial
+
+		/// Spend indexed to 2020 = 100 (keeps product / segment filters).
+		measure 'Spend Index 2020' = DIVIDE ( [Spend USD], CALCULATE ( [Spend USD], REMOVEFILTERS ( dim_date ), dim_date[year] = 2020 ) ) * 100
+			formatString: 0
+			displayFolder: 01 Commercial
+
+		/// Spend in USD millions (data labels).
+		measure 'Spend USD m' = DIVIDE ( [Spend USD], 1000000 )
+			formatString: #,0.0
+			displayFolder: 01 Commercial
+
+		/// Share of total spend for the current filters on year and program.
+		measure 'Spend Share' = DIVIDE ( [Spend USD], CALCULATE ( [Spend USD], REMOVEFILTERS ( dim_product ), REMOVEFILTERS ( dim_therapeutic_area ) ) )
+			formatString: 0.0%
+			displayFolder: 01 Commercial
+
+		/// Studies with Roche or Genentech as sponsor or collaborator.
+		measure 'Trials' = COUNTROWS ( fct_clinical_trials )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Studies led by Roche, Genentech or Chugai.
+		measure 'Roche-led Trials' = CALCULATE ( [Trials], fct_clinical_trials[is_roche_led] = TRUE () )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Roche-led studies recruiting or ongoing.
+		measure 'Active Trials' = CALCULATE ( [Roche-led Trials], fct_clinical_trials[status_group] = "Active" )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Roche-led studies currently recruiting.
+		measure 'Recruiting Trials' = CALCULATE ( [Roche-led Trials], fct_clinical_trials[overall_status] = "RECRUITING" )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Active Roche-led Phase 3 and Phase 2/3 studies.
+		measure 'Active Phase 3 Trials' = CALCULATE ( [Active Trials], fct_clinical_trials[phase_group] IN { "Phase 3", "Phase 2/3" } )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Active studies with primary completion in the next 12 months.
+		measure 'Readouts Next 12M' = CALCULATE ( [Roche-led Trials], fct_clinical_trials[readout_next_12_months] = TRUE () )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Planned or actual enrollment of active Roche-led studies.
+		measure 'Patients In Active Trials' = CALCULATE ( SUM ( fct_clinical_trials[enrollment_count] ), fct_clinical_trials[is_roche_led] = TRUE (), fct_clinical_trials[status_group] = "Active" )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Terminated, withdrawn or suspended as share of closed Roche-led studies.
+		measure 'Stopped Early Rate' = DIVIDE ( CALCULATE ( [Roche-led Trials], fct_clinical_trials[status_group] = "Stopped" ), CALCULATE ( [Roche-led Trials], fct_clinical_trials[status_group] IN { "Stopped", "Completed" } ) )
+			formatString: 0.0%
+			displayFolder: 02 R&D Pipeline
+
+		/// Completed Roche-led studies.
+		measure 'Completed Trials' = CALCULATE ( [Roche-led Trials], fct_clinical_trials[status_group] = "Completed" )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// FAERS cases (latest version) with a Roche product as primary suspect.
+		measure 'Safety Cases' = DISTINCTCOUNT ( fct_safety_cases[primaryid] )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Cases in the previous year.
+		measure 'Safety Cases PY' = CALCULATE ( [Safety Cases], DATEADD ( dim_date[date_day], -1, YEAR ) )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Case growth vs previous year.
+		measure 'Safety Cases YoY %' = DIVIDE ( [Safety Cases] - [Safety Cases PY], [Safety Cases PY] )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 03 Safety
+
+		/// Cases with at least one serious outcome.
+		measure 'Serious Cases' = CALCULATE ( [Safety Cases], fct_safety_cases[is_serious] = TRUE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Cases without serious outcome.
+		measure 'Non-serious Cases' = [Safety Cases] - [Serious Cases]
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Share of serious cases.
+		measure 'Serious %' = DIVIDE ( [Serious Cases], [Safety Cases] )
+			formatString: 0.0%
+			displayFolder: 03 Safety
+
+		/// Cases with death reported as outcome.
+		measure 'Fatal Cases' = CALCULATE ( [Safety Cases], fct_safety_cases[is_death] = TRUE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Share of cases with fatal outcome.
+		measure 'Fatal %' = DIVIDE ( [Fatal Cases], [Safety Cases] )
+			formatString: 0.0%
+			displayFolder: 03 Safety
+
+		/// Cases with life-threatening outcome.
+		measure 'Life-threatening Cases' = CALCULATE ( [Safety Cases], fct_safety_cases[is_life_threatening] = TRUE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Cases with hospitalisation.
+		measure 'Hospitalisation Cases' = CALCULATE ( [Safety Cases], fct_safety_cases[is_hospitalisation] = TRUE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Cases reported by health professionals.
+		measure 'HCP Reported Cases' = CALCULATE ( [Safety Cases], fct_safety_cases[is_health_professional_report] = TRUE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Share of cases reported by health professionals.
+		measure 'HCP Reported %' = DIVIDE ( [HCP Reported Cases], [Safety Cases] )
+			formatString: 0.0%
+			displayFolder: 03 Safety
+
+		/// Product-reaction pairs meeting Evans criteria, excluding indication-related terms.
+		measure 'Active Signals' = CALCULATE ( COUNTROWS ( fct_safety_signals ), fct_safety_signals[is_signal] = TRUE (), fct_safety_signals[is_indication_related] = FALSE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Product-reaction pairs with 3+ cases evaluated by PRR.
+		measure 'Signals Evaluated' = COUNTROWS ( fct_safety_signals )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// FDA drug recalls of Roche / Genentech products.
+		measure 'Product Recalls' = COUNTROWS ( fct_recalls )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Confidence interval text for the signals table.
+		measure 'PRR 95% CI' = IF ( HASONEVALUE ( fct_safety_signals[signal_key] ), FORMAT ( MIN ( fct_safety_signals[prr_lower_95] ), "0.00" ) & " to " & FORMAT ( MAX ( fct_safety_signals[prr_upper_95] ), "0.00" ) )
+			displayFolder: 03 Safety
+
+		/// Python ingestion runs (local and GitHub Actions).
+		measure 'Ingestion Runs' = COUNTROWS ( ops_ingestion_runs )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Runs with status success.
+		measure 'Successful Runs' = CALCULATE ( [Ingestion Runs], ops_ingestion_runs[status] = "success" )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Share of successful runs.
+		measure 'Run Success Rate' = DIVIDE ( [Successful Runs], [Ingestion Runs] )
+			formatString: 0.0%
+			displayFolder: 04 Pipeline Health
+
+		/// Runs started while another run of the same source was still running.
+		measure 'Overlapping Runs' = CALCULATE ( [Ingestion Runs], ops_ingestion_runs[overlapped_previous_run] = TRUE () )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Rows loaded, excluding overlapping duplicate runs.
+		measure 'Rows Ingested' = CALCULATE ( SUM ( ops_ingestion_runs[rows_loaded] ), ops_ingestion_runs[overlapped_previous_run] = FALSE () )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Runs triggered by the scheduled pipelines.
+		measure 'GitHub Actions Runs' = CALCULATE ( [Ingestion Runs], ops_ingestion_runs[triggered_by] = "github_actions" )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// dbt runs / builds logged by the on-run-end hook.
+		measure 'dbt Invocations' = DISTINCTCOUNT ( ops_dbt_run_results[invocation_id] )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Data quality tests executed.
+		measure 'dbt Tests Run' = CALCULATE ( COUNTROWS ( ops_dbt_run_results ), ops_dbt_run_results[resource_type] = "test" )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Data quality tests with status pass.
+		measure 'dbt Tests Passed' = CALCULATE ( COUNTROWS ( ops_dbt_run_results ), ops_dbt_run_results[resource_type] = "test", ops_dbt_run_results[status] = "pass" )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Share of tests passed.
+		measure 'dbt Test Pass Rate' = DIVIDE ( [dbt Tests Passed], [dbt Tests Run] )
+			formatString: 0.0%
+			displayFolder: 04 Pipeline Health
+
+		/// Estimated BigQuery cost of dbt runs at on-demand list price (before free tier).
+		measure 'BigQuery Cost Est' = SUM ( ops_dbt_run_results[estimated_cost_usd] )
+			formatString: $#,0.00
+			displayFolder: 04 Pipeline Health
+
+		/// GB processed by dbt runs.
+		measure 'BigQuery GB Processed' = DIVIDE ( SUM ( ops_dbt_run_results[bytes_processed] ), 1000000000 )
+			formatString: #,0.0
+			displayFolder: 04 Pipeline Health
+
+		/// Messages consumed from the intake topic.
+		measure 'Kafka Messages' = SUM ( ops_kafka_batches[messages] )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Events that passed validation.
+		measure 'Kafka Valid Events' = SUM ( ops_kafka_batches[valid] )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Events routed to the dead-letter queue.
+		measure 'Kafka Invalid Events' = SUM ( ops_kafka_batches[invalid] )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Share of events routed to the dead-letter queue.
+		measure 'Kafka Invalid Rate' = DIVIDE ( [Kafka Invalid Events], [Kafka Messages] )
+			formatString: 0.0%
+			displayFolder: 04 Pipeline Health
+
+		/// Highest consumer lag observed.
+		measure 'Kafka Max Lag' = MAX ( ops_kafka_batches[consumer_lag] )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Average messages per second per batch.
+		measure 'Kafka Avg Throughput' = AVERAGE ( ops_kafka_batches[throughput_msg_per_sec] )
+			formatString: #,0.0
+			displayFolder: 04 Pipeline Health
+
+		/// Rows per layer / table (BigQuery metadata).
+		measure 'Layer Rows' = SUM ( ops_layer_volumes[row_count] )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Storage per layer / table in MB.
+		measure 'Layer Size MB' = SUM ( ops_layer_volumes[size_mb] )
+			formatString: #,0.0
+			displayFolder: 04 Pipeline Health
+
+		/// Adverse events received through Kafka (deduplicated).
+		measure 'Stream Events' = COUNTROWS ( fct_intake_stream )
+			formatString: #,0
+			displayFolder: 04 Pipeline Health
+
+		/// Green if spend grew.
+		measure 'Spend YoY Colour' = IF ( [Spend YoY %] >= 0, "#1E8E5A", "#D6334B" )
+			displayFolder: 99 Formatting
+
+		/// Green if CHF spend grew.
+		measure 'Spend CHF YoY Colour' = IF ( [Spend CHF YoY %] >= 0, "#1E8E5A", "#D6334B" )
+			displayFolder: 99 Formatting
+
+		/// Green if claims grew.
+		measure 'Claims YoY Colour' = IF ( [Medicare Claims YoY %] >= 0, "#1E8E5A", "#D6334B" )
+			displayFolder: 99 Formatting
+
+		/// Green if growth brands share increased.
+		measure 'Growth Share Colour' = IF ( [Growth Brands Share vs PY] >= 0, "#1E8E5A", "#D6334B" )
+			displayFolder: 99 Formatting
+
+		/// Neutral reference label colour.
+		measure 'Neutral Colour' = "#5B6576"
+			displayFolder: 99 Formatting
+
+		/// Erosion shown in amber (expected business effect).
+		measure 'LOE Colour' = "#E8702A"
+			displayFolder: 99 Formatting
+
+		/// Serious share in red above 50%.
+		measure 'Serious Colour' = IF ( [Serious %] > 0.5, "#D6334B", "#5B6576" )
+			displayFolder: 99 Formatting
+
+		/// Green at 100%, amber from 95%, red below.
+		measure 'Success Rate Colour' = SWITCH ( TRUE (), [Run Success Rate] >= 1, "#1E8E5A", [Run Success Rate] >= 0.95, "#F2B705", "#D6334B" )
+			displayFolder: 99 Formatting
+
+		/// Green at 100% tests passed.
+		measure 'Test Pass Colour' = IF ( [dbt Test Pass Rate] >= 1, "#1E8E5A", "#D6334B" )
+			displayFolder: 99 Formatting

@@ -1,0 +1,204 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1337.8301459180736,
+            "y": 559.27304799553053
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "85435d0e-1078-42a6-962c-d5181e78a309",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 675.19280112941226,
+            "y": 361.06484463078743
+          },
+          "nodeIndex": "dim_product",
+          "nodeLineageTag": "ec0b2393-5fc2-49c3-b37e-10e770bf7ef9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 263.95387790171958
+          },
+          "nodeIndex": "dim_therapeutic_area",
+          "nodeLineageTag": "a4aa2741-a48d-48d2-b56d-c73f404b0fd6",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 390.62932295210078,
+            "y": 303.38824178940195
+          },
+          "nodeIndex": "fct_clinical_trials",
+          "nodeLineageTag": "af435c9f-db89-45f0-883f-8172e67c887f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 891.2643486290192,
+            "y": 714.83553664281987
+          },
+          "nodeIndex": "fct_intake_stream",
+          "nodeLineageTag": "1503d64a-96bc-4a04-bdeb-a3d4a73d0eab",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.07331086035288,
+            "y": -50
+          },
+          "nodeIndex": "fct_recalls",
+          "nodeLineageTag": "83d316df-cf57-4fbc-bd20-a83e2071cdd5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 913.78926548409686,
+            "y": 7.3310525771289576
+          },
+          "nodeIndex": "fct_safety_cases",
+          "nodeLineageTag": "c93e45c4-7cb4-4ffb-b50d-3897628e2225",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1087.3671350816148,
+            "y": 361.03759861721596
+          },
+          "nodeIndex": "fct_safety_signals",
+          "nodeLineageTag": "bc55ed5a-3bb6-4476-9c08-c9584b98e396",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 429.67500050352919,
+            "y": 714.75904973645663
+          },
+          "nodeIndex": "fct_us_spending",
+          "nodeLineageTag": "75127fba-850c-4de1-ba44-5ccdbd6c300a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1621.8301459180736,
+            "y": 559.27304799553053
+          },
+          "nodeIndex": "ops_dbt_run_results",
+          "nodeLineageTag": "faaf25f3-fd9b-4d1b-b08c-c33c43f3e7a6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1905.8301459180736,
+            "y": 559.27304799553053
+          },
+          "nodeIndex": "ops_ingestion_runs",
+          "nodeLineageTag": "1ce88357-5776-498f-9f4a-eb55ef113bfc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1103.8301459180736,
+            "y": 1068.5460959910611
+          },
+          "nodeIndex": "ops_kafka_batches",
+          "nodeLineageTag": "e7bcca7a-b666-4d6f-abc5-ac3c8ebc6f55",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1712.4185422908981,
+            "y": 185.70643250483431
+          },
+          "nodeIndex": "ops_layer_volumes",
+          "nodeLineageTag": "d657e5d9-ddc4-4626-82c1-bcfd1ea530ac",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1752.6352345455498,
+            "y": 1080.0729921671991
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "a10c8b87-73e3-4b03-a26d-a64b42295410",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 56.764435120775062,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

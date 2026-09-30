@@ -1,0 +1,137 @@
+table ops_ingestion_runs
+	lineageTag: 1ce88357-5776-498f-9f4a-eb55ef113bfc
+
+	column run_id
+		dataType: string
+		lineageTag: df71d63e-c597-4196-b3fa-8ec402d7570b
+		summarizeBy: none
+		sourceColumn: run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		lineageTag: eb30bff7-ebdb-4908-9d1d-e50d9cef5b76
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 2c5fdc6c-fc3f-4a35-9dab-ca8eeb9a8c76
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 55337a30-8f04-414c-a258-cfd7c98282d1
+		summarizeBy: none
+		sourceColumn: started_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column finished_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bbde5b89-ea50-4f6c-a14e-a2f055216f9e
+		summarizeBy: none
+		sourceColumn: finished_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column run_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 70b1861b-33b7-42b3-821c-7b1bb71439e7
+		summarizeBy: none
+		sourceColumn: run_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column duration_sec
+		dataType: double
+		lineageTag: 2f7434b0-b7f6-4b98-bd39-070e33727c0c
+		summarizeBy: sum
+		sourceColumn: duration_sec
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rows_loaded
+		dataType: int64
+		formatString: 0
+		lineageTag: b07b8da0-d75c-4591-919b-20b0bbf5e9a7
+		summarizeBy: sum
+		sourceColumn: rows_loaded
+
+		annotation SummarizationSetBy = Automatic
+
+	column files_written
+		dataType: int64
+		formatString: 0
+		lineageTag: e7356208-1f9d-4b60-9e46-d0f2b0de59c1
+		summarizeBy: sum
+		sourceColumn: files_written
+
+		annotation SummarizationSetBy = Automatic
+
+	column bytes_written
+		dataType: int64
+		formatString: 0
+		lineageTag: f8bccbfe-64db-4317-8030-c123e225deb1
+		summarizeBy: sum
+		sourceColumn: bytes_written
+
+		annotation SummarizationSetBy = Automatic
+
+	column target
+		dataType: string
+		lineageTag: 493ee7e8-5bb7-4e50-ae1e-b22faf1b2e62
+		summarizeBy: none
+		sourceColumn: target
+
+		annotation SummarizationSetBy = Automatic
+
+	column triggered_by
+		dataType: string
+		lineageTag: 5ff6bb59-6e4a-4ef9-9bda-6d7cba7f50e6
+		summarizeBy: none
+		sourceColumn: triggered_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column error_message
+		dataType: string
+		lineageTag: 02c68c5f-6e57-4cdb-ae26-ab0b1a1553e7
+		summarizeBy: none
+		sourceColumn: error_message
+
+		annotation SummarizationSetBy = Automatic
+
+	column overlapped_previous_run
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bd22dde6-a65d-4471-bc18-22b79bb28004
+		summarizeBy: none
+		sourceColumn: overlapped_previous_run
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ops_ingestion_runs = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    ops_Schema = #"roche-data-platform_Database"{[Name="ops",Kind="Schema"]}[Data],
+				    ops_ingestion_runs_View = ops_Schema{[Name="ops_ingestion_runs",Kind="View"]}[Data]
+				in
+				    ops_ingestion_runs_View
+

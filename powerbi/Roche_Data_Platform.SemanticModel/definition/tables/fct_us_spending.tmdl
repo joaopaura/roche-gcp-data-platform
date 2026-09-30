@@ -1,0 +1,128 @@
+table fct_us_spending
+	lineageTag: 75127fba-850c-4de1-ba44-5ccdbd6c300a
+
+	column spending_key
+		dataType: string
+		lineageTag: 6c27902b-9cae-4841-a7c9-f816846a3cf8
+		summarizeBy: none
+		sourceColumn: spending_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 343cc93f-390e-4899-b693-d8d00ad8d424
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column program
+		dataType: string
+		lineageTag: 53934acf-96a6-42ca-ae2b-260872cea389
+		summarizeBy: none
+		sourceColumn: program
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ea6a26e-8cd2-4962-a2a9-9814364033e7
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dcd9ebaf-3b73-4448-b382-794c8c011b39
+		summarizeBy: none
+		sourceColumn: year_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column spending_usd
+		dataType: double
+		lineageTag: cce58d76-7e56-49e0-baec-bd55548ce150
+		summarizeBy: sum
+		sourceColumn: spending_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column spending_chf
+		dataType: double
+		lineageTag: 0a10cd45-c991-48e2-ad37-b301f2f0ea70
+		summarizeBy: sum
+		sourceColumn: spending_chf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_chf_per_usd
+		dataType: double
+		lineageTag: a31dccf9-1262-41bc-93b7-1888f9419ea3
+		summarizeBy: sum
+		sourceColumn: avg_chf_per_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column claims
+		dataType: double
+		lineageTag: 02f2aefc-77c1-4499-aece-1d3ac92e5cc5
+		summarizeBy: sum
+		sourceColumn: claims
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column beneficiaries
+		dataType: double
+		lineageTag: 4963723a-f16b-4c22-b11f-131d7ff25764
+		summarizeBy: sum
+		sourceColumn: beneficiaries
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dosage_units
+		dataType: double
+		lineageTag: 768de0e1-17a1-4d2c-b09d-7b0a19a286e8
+		summarizeBy: sum
+		sourceColumn: dosage_units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column spending_per_beneficiary_usd
+		dataType: double
+		lineageTag: 5533d5f5-a739-4c18-bc4b-9e1dd8f5136e
+		summarizeBy: sum
+		sourceColumn: spending_per_beneficiary_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fct_us_spending = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    fct_us_spending_Table = marts_Schema{[Name="fct_us_spending",Kind="Table"]}[Data]
+				in
+				    fct_us_spending_Table
+

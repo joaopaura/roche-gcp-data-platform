@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "Fluent2-CY26SU08",
+      "reportVersionAtImport": {
+        "visual": "2.12.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Roche_Data_Platform9618180963686278.json",
+      "reportVersionAtImport": {
+        "visual": "2.12.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "Fluent2-CY26SU08",
+          "path": "BaseThemes/Fluent2-CY26SU08.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "01_home7149604615784717.png",
+          "path": "01_home7149604615784717.png",
+          "type": "Image"
+        },
+        {
+          "name": "02_commercial5073829912371882.png",
+          "path": "02_commercial5073829912371882.png",
+          "type": "Image"
+        },
+        {
+          "name": "03_rd_pipeline08718532154026437.png",
+          "path": "03_rd_pipeline08718532154026437.png",
+          "type": "Image"
+        },
+        {
+          "name": "04_safety08641408686780028.png",
+          "path": "04_safety08641408686780028.png",
+          "type": "Image"
+        },
+        {
+          "name": "05_pipeline_health6034163458390923.png",
+          "path": "05_pipeline_health6034163458390923.png",
+          "type": "Image"
+        },
+        {
+          "name": "Roche_Data_Platform9618180963686278.json",
+          "path": "Roche_Data_Platform9618180963686278.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

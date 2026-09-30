@@ -1,0 +1,23 @@
+createOrReplace
+
+	ref table _Measures
+
+		/// Share of active Roche-led trials in Phase 3 or Phase 2/3.
+		measure 'Phase 3 Share Of Active' = DIVIDE ( [Active Phase 3 Trials], [Active Trials] )
+			formatString: 0%
+			displayFolder: 02 R&D Pipeline
+
+		/// Average enrollment per active Roche-led trial.
+		measure 'Avg Enrollment Active' = DIVIDE ( [Patients In Active Trials], [Active Trials] )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Phase 3 and Phase 2/3 readouts in the next 12 months.
+		measure 'Readouts Next 12M Phase 3' = CALCULATE ( [Readouts Next 12M], fct_clinical_trials[phase_group] IN { "Phase 3", "Phase 2/3" } )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline
+
+		/// Roche-led trials terminated, withdrawn or suspended.
+		measure 'Stopped Trials' = CALCULATE ( [Roche-led Trials], fct_clinical_trials[status_group] = "Stopped" )
+			formatString: #,0
+			displayFolder: 02 R&D Pipeline

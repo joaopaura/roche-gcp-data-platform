@@ -1,0 +1,142 @@
+table fct_safety_signals
+	lineageTag: bc55ed5a-3bb6-4476-9c08-c9584b98e396
+
+	column signal_key
+		dataType: string
+		lineageTag: c682e105-4e04-4b5d-a383-aa8cfd4b898b
+		summarizeBy: none
+		sourceColumn: signal_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: f3027a66-be6c-450c-91c4-c3baadb1b73b
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column reaction_pt
+		dataType: string
+		lineageTag: 69b5d9a2-6ed2-4601-8d7c-bf678a994059
+		summarizeBy: none
+		sourceColumn: reaction_pt
+
+		annotation SummarizationSetBy = Automatic
+
+	column cases_product_reaction
+		dataType: int64
+		formatString: 0
+		lineageTag: bfa9aa28-d6e6-4afb-9cc9-d42d5de20ce5
+		summarizeBy: sum
+		sourceColumn: cases_product_reaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column cases_product
+		dataType: int64
+		formatString: 0
+		lineageTag: 25c9cb08-bc0c-4f22-b7ca-14f3462725a0
+		summarizeBy: sum
+		sourceColumn: cases_product
+
+		annotation SummarizationSetBy = Automatic
+
+	column cases_reaction_all_drugs
+		dataType: int64
+		formatString: 0
+		lineageTag: 565e3525-fbc6-4404-a2e3-b8c297bcd75a
+		summarizeBy: sum
+		sourceColumn: cases_reaction_all_drugs
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_rate
+		dataType: double
+		lineageTag: fac028a2-a920-49fa-aed6-8214b0cc6cbd
+		summarizeBy: sum
+		sourceColumn: reporting_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prr
+		dataType: double
+		lineageTag: c622df71-e1f5-4396-aa63-efd37afbeaa2
+		summarizeBy: sum
+		sourceColumn: prr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prr_lower_95
+		dataType: double
+		lineageTag: 2a1b3666-e675-488e-839e-51e271f9b079
+		summarizeBy: sum
+		sourceColumn: prr_lower_95
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prr_upper_95
+		dataType: double
+		lineageTag: af3cd508-9a25-4d7c-9baa-f66d46882dc1
+		summarizeBy: sum
+		sourceColumn: prr_upper_95
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column chi_square
+		dataType: double
+		lineageTag: b36f7cc9-d2f2-476a-b9ad-e1951c2af8d1
+		summarizeBy: sum
+		sourceColumn: chi_square
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_signal
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 72d4df1e-4d45-4aef-b850-24fa4ce58d0e
+		summarizeBy: none
+		sourceColumn: is_signal
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_indication_related
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e4198690-eb8b-494f-85f1-4452e0507976
+		summarizeBy: none
+		sourceColumn: is_indication_related
+
+		annotation SummarizationSetBy = Automatic
+
+	column rank_by_cases
+		dataType: int64
+		formatString: 0
+		lineageTag: d14285aa-28fc-4af8-8927-6523496b4b76
+		summarizeBy: sum
+		sourceColumn: rank_by_cases
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_safety_signals = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"roche-data-platform_Database" = Source{[Name="roche-data-platform",Kind="Database"]}[Data],
+				    marts_Schema = #"roche-data-platform_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    fct_safety_signals_Table = marts_Schema{[Name="fct_safety_signals",Kind="Table"]}[Data]
+				in
+				    fct_safety_signals_Table
+
