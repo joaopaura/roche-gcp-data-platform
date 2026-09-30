@@ -1,0 +1,18 @@
+createOrReplace
+
+	ref table _Measures
+
+		/// Reportable signals: Evans criteria, excluding indication-related and non-clinical MedDRA terms.
+		measure 'Active Signals' = CALCULATE ( COUNTROWS ( fct_safety_signals ), fct_safety_signals[is_reportable_signal] = TRUE () )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// FDA drug recalls of Roche / Genentech products (0 when none).
+		measure 'Product Recalls' = COALESCE ( COUNTROWS ( fct_recalls ), 0 )
+			formatString: #,0
+			displayFolder: 03 Safety
+
+		/// Most serious recall class (0 when none).
+		measure 'Class I Recalls' = COALESCE ( CALCULATE ( COUNTROWS ( fct_recalls ), fct_recalls[classification] = "Class I" ), 0 )
+			formatString: #,0
+			displayFolder: 03 Safety

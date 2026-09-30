@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "295e23f9389087c1add5",
   "position": {
-    "x": 991,
-    "y": 30,
+    "x": 0,
+    "y": 0,
     "z": 0,
     "height": 40,
     "width": 128,
@@ -180,6 +180,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'15'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Grp_Nav_P3_Home'"
                 }
               }
             }
@@ -417,5 +424,6 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "9ff5bb07bd0a9318d01a",
   "howCreated": "InsertVisualButton"
 }

@@ -264,11 +264,11 @@ table _Measures
 		displayFolder: 03 Safety
 		lineageTag: eb9d5ed6-49d9-4b18-926c-40c43f70a9a8
 
-	/// Product-reaction pairs meeting Evans criteria, excluding indication-related terms.
-	measure 'Active Signals' = CALCULATE ( COUNTROWS ( fct_safety_signals ), fct_safety_signals[is_signal] = TRUE (), fct_safety_signals[is_indication_related] = FALSE () )
+	/// Reportable signals: Evans criteria, excluding indication-related and non-clinical MedDRA terms.
+	measure 'Active Signals' = CALCULATE ( COUNTROWS ( fct_safety_signals ), fct_safety_signals[is_reportable_signal] = TRUE () )
 		formatString: #,0
 		displayFolder: 03 Safety
-		lineageTag: f0c5e4ee-d3b2-4a90-907b-b2501db68cfb
+		lineageTag: f8f0eaa3-efea-4ae0-aaff-c690193d916a
 
 	/// Product-reaction pairs with 3+ cases evaluated by PRR.
 	measure 'Signals Evaluated' = COUNTROWS ( fct_safety_signals )
@@ -276,11 +276,11 @@ table _Measures
 		displayFolder: 03 Safety
 		lineageTag: a480a447-a6d2-46c4-958c-68c3cd2172f2
 
-	/// FDA drug recalls of Roche / Genentech products.
-	measure 'Product Recalls' = COUNTROWS ( fct_recalls )
+	/// FDA drug recalls of Roche / Genentech products (0 when none).
+	measure 'Product Recalls' = COALESCE ( COUNTROWS ( fct_recalls ), 0 )
 		formatString: #,0
 		displayFolder: 03 Safety
-		lineageTag: c77aabe5-6618-42f9-b955-c5f29079059f
+		lineageTag: 6a9327a4-9cc8-4af2-9b03-0b78a904e0e1
 
 	/// Confidence interval text for the signals table.
 	measure 'PRR 95% CI' = IF ( HASONEVALUE ( fct_safety_signals[signal_key] ), FORMAT ( MIN ( fct_safety_signals[prr_lower_95] ), "0.00" ) & " to " & FORMAT ( MAX ( fct_safety_signals[prr_upper_95] ), "0.00" ) )
@@ -482,11 +482,11 @@ table _Measures
 		displayFolder: 02 R&D Pipeline
 		lineageTag: 04671000-2c88-489d-8d0b-ac3b08c567e6
 
-	/// Most serious recall class (reasonable probability of serious health consequences).
-	measure 'Class I Recalls' = CALCULATE ( [Product Recalls], fct_recalls[classification] = "Class I" )
+	/// Most serious recall class (0 when none).
+	measure 'Class I Recalls' = COALESCE ( CALCULATE ( COUNTROWS ( fct_recalls ), fct_recalls[classification] = "Class I" ), 0 )
 		formatString: #,0
 		displayFolder: 03 Safety
-		lineageTag: 78307b34-549f-43c5-9e7a-0f6826b6d9e0
+		lineageTag: 05d59a56-28f2-44cc-ba07-773c46289d11
 
 	/// Cases with any serious outcome (label for the outcome chart).
 	measure 'Any Serious Outcome' = [Serious Cases]

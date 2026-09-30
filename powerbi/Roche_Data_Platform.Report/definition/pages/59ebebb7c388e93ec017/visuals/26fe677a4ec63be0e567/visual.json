@@ -1,0 +1,436 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "26fe677a4ec63be0e567",
+  "position": {
+    "x": 916.7336914811973,
+    "y": 0,
+    "z": 1000,
+    "height": 262,
+    "width": 852,
+    "tabOrder": 16
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_product"
+                    }
+                  },
+                  "Property": "brand_name"
+                }
+              },
+              "queryRef": "dim_product.brand_name",
+              "nativeQueryRef": "Product",
+              "displayName": "Product"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_safety_signals"
+                    }
+                  },
+                  "Property": "reaction_pt"
+                }
+              },
+              "queryRef": "fct_safety_signals.reaction_pt",
+              "nativeQueryRef": "Reaction (MedDRA)",
+              "displayName": "Reaction (MedDRA)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fct_safety_signals"
+                        }
+                      },
+                      "Property": "cases_product_reaction"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fct_safety_signals.cases_product_reaction)",
+              "nativeQueryRef": "Cases",
+              "displayName": "Cases"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fct_safety_signals"
+                        }
+                      },
+                      "Property": "prr"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(fct_safety_signals.prr)",
+              "nativeQueryRef": "PRR",
+              "displayName": "PRR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "PRR 95% CI"
+                }
+              },
+              "queryRef": "_Measures.PRR 95% CI",
+              "nativeQueryRef": "95% CI",
+              "displayName": "95% CI"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fct_safety_signals"
+                      }
+                    },
+                    "Property": "cases_product_reaction"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#7FA0FF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'minColor'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fct_safety_signals.prr)"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "176.9133860121313D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fct_safety_signals.cases_product_reaction)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "126.16905179106254D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fct_safety_signals.prr)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "145.35580309835353D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.PRR 95% CI"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.80802919607581D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_product.brand_name"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Table_TopSignals_P3'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "949eada9a05a2b2b7e4c",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ec751a7a107c34e1b0c7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_product"
+              }
+            },
+            "Property": "brand_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0456f790874ba4b7ec5c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_safety_signals"
+              }
+            },
+            "Property": "reaction_pt"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ce238e0b6001db909cba",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_safety_signals"
+                  }
+                },
+                "Property": "cases_product_reaction"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3237ba2d20d4a0448013",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_safety_signals"
+                  }
+                },
+                "Property": "prr"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5f16b93cb44ab74aa7b6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "PRR 95% CI"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "62e6bbdb3a05b1433791",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fct_safety_signals"
+              }
+            },
+            "Property": "is_reportable_signal"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fct_safety_signals",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "is_reportable_signal"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "013f9c233937702a0017",
   "position": {
-    "x": 60,
-    "y": 208,
-    "z": 4005,
+    "x": 0,
+    "y": 0,
+    "z": 0,
     "height": 80,
     "width": 253,
     "tabOrder": 9
@@ -259,8 +259,22 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'KPI_SafetyCases_P3'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "b0b699a300c5c1673200"
 }

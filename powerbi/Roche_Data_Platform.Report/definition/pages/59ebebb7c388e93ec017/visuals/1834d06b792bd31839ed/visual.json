@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "1834d06b792bd31839ed",
   "position": {
-    "x": 988,
-    "y": 208,
-    "z": 4008,
+    "x": 928,
+    "y": 0,
+    "z": 3000,
     "height": 80,
     "width": 253,
     "tabOrder": 12
@@ -252,8 +252,22 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'KPI_HCPReported_P3'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "b0b699a300c5c1673200"
 }

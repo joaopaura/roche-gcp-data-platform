@@ -928,6 +928,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.476
 			          }
+			        },
+			        {
+			          "Product": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -9700,6 +9710,16 @@ cultureInfo en-US
 			          "pt": {
 			            "State": "Generated",
 			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "Reaction (MedDRA)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -19739,6 +19759,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.599
 			          }
+			        },
+			        {
+			          "95% CI": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -21807,6 +21837,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
+			        },
+			        {
+			          "Size (MB)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -22421,6 +22461,466 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "entity__measure.class_i_recalls": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Class I Recalls"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "class i recalls": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "recalls": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "i recalls": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "classification i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "category i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "genre i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "course i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "grade i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "lecture i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "lesson i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "period i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "rank i recall": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "class i memory": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        }
+			      ]
+			    },
+			    "entity__measure.any_serious_outcome": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Any Serious Outcome"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "any serious outcome": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "any serious consequence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious product": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious conclusion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious upshot": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious aftermath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious sequel": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious aftereffect": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "any serious result": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "any serious effect": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "any serious ending": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "fct_safety_signal.is_non_clinical_term": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_safety_signals",
+			          "ConceptualProperty": "is_non_clinical_term"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "is non clinical term": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "is_non_clinical_term": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "is non clinical tenure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "is non clinical duration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "is non clinical period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "is non clinical stretch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "is non clinical span": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "is non clinical stint": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "is non clinical expression": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "is non clinical idiom": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "is non clinical word": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "is non clinical phrase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        }
+			      ]
+			    },
+			    "fct_safety_signal.is_reportable_signal": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fct_safety_signals",
+			          "ConceptualProperty": "is_reportable_signal"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "is reportable signal": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "is_reportable_signal": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "is reportable indication": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "is reportable pointer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "is reportable sign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "is reportable gesture": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "is reportable indicator": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "is reportable motion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "is reportable hint": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -22743,6 +23243,138 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_therapeutic_areas_have_dim_products"
+			        }
+			      ]
+			    },
+			    "fct_safety_signal_has_is_reportable_signal": {
+			      "Binding": {
+			        "ConceptualEntity": "fct_safety_signals"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fct_safety_signal": {
+			          "Target": {
+			            "Entity": "fct_safety_signal"
+			          }
+			        },
+			        "fct_safety_signal.is_reportable_signal": {
+			          "Target": {
+			            "Entity": "fct_safety_signal.is_reportable_signal"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fct_safety_signal"
+			            },
+			            "Object": {
+			              "Role": "fct_safety_signal.is_reportable_signal"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fct_safety_signals_have_is_reportable_signals"
+			        }
+			      ]
+			    },
+			    "fct_safety_signal_has_is_non_clinical_term": {
+			      "Binding": {
+			        "ConceptualEntity": "fct_safety_signals"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fct_safety_signal": {
+			          "Target": {
+			            "Entity": "fct_safety_signal"
+			          }
+			        },
+			        "fct_safety_signal.is_non_clinical_term": {
+			          "Target": {
+			            "Entity": "fct_safety_signal.is_non_clinical_term"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fct_safety_signal"
+			            },
+			            "Object": {
+			              "Role": "fct_safety_signal.is_non_clinical_term"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fct_safety_signals_have_is_non_clinical_terms"
+			        }
+			      ]
+			    },
+			    "fct_safety_case_has_entity__measure_any_serious_outcome": {
+			      "Binding": {
+			        "ConceptualEntity": "fct_safety_cases"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fct_safety_case": {
+			          "Target": {
+			            "Entity": "fct_safety_case"
+			          }
+			        },
+			        "entity__measure.any_serious_outcome": {
+			          "Target": {
+			            "Entity": "entity__measure.any_serious_outcome"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fct_safety_case"
+			            },
+			            "Object": {
+			              "Role": "entity__measure.any_serious_outcome"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fct_safety_cases_have_any_serious_outcome"
+			        }
+			      ]
+			    },
+			    "fct_recall_has_entity__measure_class_i_recalls": {
+			      "Binding": {
+			        "ConceptualEntity": "fct_recalls"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fct_recall": {
+			          "Target": {
+			            "Entity": "fct_recall"
+			          }
+			        },
+			        "entity__measure.class_i_recalls": {
+			          "Target": {
+			            "Entity": "entity__measure.class_i_recalls"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fct_recall"
+			            },
+			            "Object": {
+			              "Role": "entity__measure.class_i_recalls"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fct_recalls_have_class_i_recalls"
 			        }
 			      ]
 			    },

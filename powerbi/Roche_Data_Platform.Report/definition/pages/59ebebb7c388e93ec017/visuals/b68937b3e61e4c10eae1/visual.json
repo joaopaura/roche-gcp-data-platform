@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "b68937b3e61e4c10eae1",
   "position": {
-    "x": 774,
-    "y": 124,
-    "z": 4004,
+    "x": 726,
+    "y": 0,
+    "z": 4000,
     "height": 36,
     "width": 226,
     "tabOrder": 8
@@ -62,8 +62,24 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Slicer_ReporterType_P3'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "6fa18e0798a4b375deb7",
   "filterConfig": {
     "filters": [
       {
