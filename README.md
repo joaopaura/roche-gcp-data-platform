@@ -61,6 +61,12 @@ flowchart LR
     D5 --> E
 ```
 
+### dbt lineage
+
+From the raw sources (green) to the marts and the Power BI exposure (orange): staging cleans and types each source, intermediate deduplicates FAERS cases and attributes them to Roche products, marts build the star schema and the PRR signals.
+
+![dbt lineage graph](docs/screenshots/dbt_lineage.png)
+
 Everything above is created by **Terraform** (buckets, datasets, external tables, service accounts, IAM, Workload Identity Federation). Authentication is **keyless** end to end: service account impersonation on the laptop, OIDC federation in GitHub Actions.
 
 ---
